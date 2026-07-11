@@ -179,6 +179,56 @@ td strong { color: var(--ink); }
 .source-list h3 { margin: 0 0 10px; font-size: 0.95rem; }
 .source-list ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
 
+/* datacenter / GPU schematic figures (adapted vocabulary from the held HBM learning-journey draft) */
+.tle-figure { margin: 28px 0 40px; border: var(--hairline); background: var(--paper); padding: 14px; }
+.tle-figure figcaption { margin-top: 12px; color: var(--ink-500); font-size: 0.8rem; line-height: 1.6; }
+.tle-figure figcaption strong { color: var(--ink); }
+.tle-svg { display: block; width: 100%; height: auto; background: var(--paper); }
+.tle-svg .tle-svg-structure { fill: var(--paper); stroke: var(--ink-400); stroke-width: 1; }
+.tle-svg .tle-svg-active { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.tle-svg .tle-svg-muted { fill: var(--ink-100); stroke: var(--ink-200); stroke-width: 1; }
+.tle-svg .tle-svg-path { fill: none; stroke: var(--ink-400); stroke-width: 1.5; }
+.tle-svg .tle-svg-path-active { fill: none; stroke: var(--accent); stroke-width: 2; }
+.tle-svg text { fill: var(--ink); font-family: var(--font-mono); font-size: 11px; }
+.tle-svg .tle-svg-secondary { fill: var(--ink-500); font-size: 9.5px; }
+.tle-hbm-key { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px 12px; margin-top: 10px; }
+.tle-hbm-key span { display: flex; align-items: center; gap: 6px; color: var(--ink-600); font-size: 0.7rem; line-height: 1.3; }
+.tle-hbm-key span::before { width: 11px; height: 11px; border: var(--hairline); background: var(--ink-100); content: ""; flex: 0 0 auto; }
+.tle-hbm-key span[data-active="true"]::before { border-color: var(--accent); background: var(--accent-soft); }
+.tle-memory-bar { display: flex; min-height: 46px; overflow: hidden; border: 1px solid var(--ink-400); background: var(--ink-100); margin-top: 14px; }
+.tle-memory-segment { display: grid; flex: 1 1 0; min-width: 4px; place-items: center; border-right: 1px solid var(--paper); color: var(--ink); background: var(--ink-100); font: 600 0.62rem/1 var(--font-mono); }
+.tle-memory-segment:last-child { border-right: 0; }
+.tle-memory-segment[data-kind="weights"] { background: var(--ink-200); }
+.tle-memory-segment[data-kind="kv"] { background: var(--accent-soft); }
+.tle-memory-segment[data-active="true"] { border-bottom: 3px solid var(--accent); }
+.tle-memory-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; }
+.tle-memory-legend span { color: var(--ink-600); font: 500 0.66rem/1.4 var(--font-mono); }
+.tle-tier-path { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.tle-tier { position: relative; display: grid; gap: 3px; min-width: 0; padding: 8px 9px; border: var(--hairline); background: var(--paper); }
+.tle-tier[data-active="true"] { border-color: var(--accent); border-left-width: 3px; }
+.tle-tier:not(:last-child)::after { position: absolute; top: 50%; right: -11px; color: var(--ink-400); content: "\2192"; font-family: var(--font-mono); transform: translateY(-50%); }
+.tle-tier b { color: var(--ink); font-size: 0.76rem; font-weight: 600; line-height: 1.35; }
+.tle-tier small { color: var(--ink-500); font: 500 0.64rem/1.4 var(--font-mono); }
+.tle-fabric-layers { display: grid; gap: 7px; margin-top: 14px; }
+.tle-fabric-layer { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 8px; align-items: center; }
+.tle-fabric-scope { color: var(--ink-400); font: 600 0.62rem/1.25 var(--font-mono); text-transform: uppercase; }
+.tle-fabric-path { position: relative; display: flex; min-height: 32px; align-items: center; justify-content: space-between; gap: 5px; }
+.tle-fabric-path::before { position: absolute; z-index: 0; top: 50%; right: 5px; left: 5px; height: 1px; background: var(--ink-200); content: ""; }
+.tle-fabric-chip { position: relative; z-index: 1; display: grid; min-width: 30px; min-height: 28px; padding: 2px 7px; place-items: center; border: var(--hairline); color: var(--ink-600); background: var(--paper); font: 500 0.62rem/1.2 var(--font-mono); text-align: center; }
+.tle-fabric-chip[data-active="true"] { border-color: var(--accent); color: var(--ink); background: var(--accent-soft); }
+.tle-machine { display: grid; gap: 12px; margin-top: 14px; }
+.tle-machine-lane { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; }
+.tle-machine-lane-label { padding-top: 7px; color: var(--ink-400); font: 600 0.62rem/1.35 var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+.tle-machine-flow { position: relative; display: flex; min-width: 0; flex-wrap: wrap; gap: 12px; }
+.tle-machine-flow::before { position: absolute; top: 17px; right: 4px; left: 4px; height: 1px; background: var(--ink-200); content: ""; }
+.tle-machine-stage { position: relative; z-index: 1; display: grid; min-width: 52px; max-width: 96px; flex: 1 1 60px; gap: 3px; padding-top: 26px; color: var(--ink-600); font-size: 0.66rem; line-height: 1.3; text-align: center; }
+.tle-machine-stage::before { position: absolute; top: 11px; left: 50%; width: 11px; height: 11px; border: 1px solid var(--ink-400); border-radius: 50%; background: var(--paper); content: ""; transform: translateX(-50%); }
+.tle-machine-stage[data-active="true"]::before { border-color: var(--accent); background: var(--accent); }
+.tle-machine-stage[data-evidence="unknown"]::before { border-style: dashed; background: var(--ink-100); }
+.tle-machine-stage i { color: var(--ink); font: 600 0.6rem/1 var(--font-mono); font-style: normal; }
+.tle-machine-join { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; color: var(--ink-500); font-size: 0.7rem; line-height: 1.45; }
+.tle-machine-join::after { grid-column: 1; height: 12px; margin-left: 5px; border-left: 1px solid var(--ink-400); content: ""; }
+
 .site-footer { border-top: var(--hairline); color: var(--ink-500); background: var(--paper); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 30px; padding-bottom: 48px; font-size: 0.82rem; }
 
@@ -526,6 +576,15 @@ Codex:        total input = input_tokens
             That rule is the same on a 16GB MacBook and a GB200 rack — only the tiers change. Deep dive:
             <a href="https://touchdown-labs.com/blog/kv-cache-memory-hierarchy-inference.html">KV Cache Is Becoming the Memory Hierarchy of Inference</a>.
           </p>
+          <figure class="tle-figure" aria-label="KV placement tiers from HBM to NVMe">
+            <div class="tle-tier-path">
+              <div class="tle-tier" data-active="true"><b>HBM / unified memory</b><small>hot state · active KV</small></div>
+              <div class="tle-tier"><b>Host DRAM</b><small>offload or shared tier</small></div>
+              <div class="tle-tier"><b>CXL</b><small>topology + software dependent</small></div>
+              <div class="tle-tier"><b>NVMe</b><small>cold capacity · durable state</small></div>
+            </div>
+            <figcaption><strong>Where a reusable prefix can live.</strong> A lower tier wins only when lookup + transfer + restore + miss risk beats recomputed prefill under the latency budget. This demo exercises the decision on fixture data; no tier below the hot one is measured here. <span class="tle-evidence-mark" data-evidence="fixture" data-evidence-symbol="F">Fixture-backed</span></figcaption>
+          </figure>
         </section>
 
         <section id="scene-decode" data-tle-scene
@@ -568,6 +627,100 @@ Codex:        total input = input_tokens
             browser. Either way the lesson holds: <strong>every replayed character eventually occupies the most
             expensive memory in the system</strong>, and occupancy you waste is concurrency you cannot serve.
           </p>
+
+          <figure class="tle-figure" aria-label="Schematic GPU package with HBM stack">
+            <svg class="tle-svg" viewBox="0 0 360 230" role="img" aria-labelledby="hbm-svg-title hbm-svg-desc">
+              <title id="hbm-svg-title">Schematic datacenter GPU package cross-section</title>
+              <desc id="hbm-svg-desc">A GPU die sits beside a stacked HBM module on one package substrate. Vertical TSVs connect eight DRAM dies through a base die. The DRAM stack is highlighted because KV cache and weights live there.</desc>
+              <rect x="12" y="196" width="336" height="22" class="tle-svg-muted"></rect>
+              <text x="180" y="211" text-anchor="middle">PACKAGE SUBSTRATE</text>
+              <rect x="28" y="82" width="150" height="103" class="tle-svg-structure"></rect>
+              <text x="103" y="130" text-anchor="middle">GPU / ACCELERATOR</text>
+              <text x="103" y="146" text-anchor="middle" class="tle-svg-secondary">logic + cache + controller</text>
+              <rect x="220" y="149" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="136" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="123" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="110" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="97" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="84" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="71" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="58" width="105" height="10" class="tle-svg-active"></rect>
+              <rect x="220" y="166" width="105" height="19" class="tle-svg-structure"></rect>
+              <text x="272" y="179" text-anchor="middle">BASE DIE</text>
+              <line x1="238" y1="55" x2="238" y2="184" class="tle-svg-path"></line>
+              <line x1="253" y1="55" x2="253" y2="184" class="tle-svg-path"></line>
+              <line x1="268" y1="55" x2="268" y2="184" class="tle-svg-path"></line>
+              <line x1="283" y1="55" x2="283" y2="184" class="tle-svg-path"></line>
+              <line x1="298" y1="55" x2="298" y2="184" class="tle-svg-path"></line>
+              <line x1="313" y1="55" x2="313" y2="184" class="tle-svg-path"></line>
+              <text x="272" y="34" text-anchor="middle">SCHEMATIC HBM STACK</text>
+              <text x="272" y="48" text-anchor="middle" class="tle-svg-secondary">8 schematic DRAM layers + TSVs</text>
+              <path d="M178 160 H207 V176 H220" class="tle-svg-path-active"></path>
+            </svg>
+            <div class="tle-hbm-key">
+              <span>GPU logic</span>
+              <span data-active="true">DRAM dies (KV + weights)</span>
+              <span>TSVs</span>
+              <span>Base die</span>
+            </div>
+            <figcaption><strong>How the datacenter draws the GPU.</strong> Stacked DRAM beside the accelerator on one package, connected through a very wide short interface. Schematic only: layer count and geometry are not a vendor cross-section, and no address trace is claimed. Vocabulary adapted from the Touchdown HBM learning-journey draft (publication hold). <span class="tle-evidence-mark" data-evidence="derived" data-evidence-symbol="D">Derived schematic</span></figcaption>
+          </figure>
+
+          <figure class="tle-figure" aria-label="Logical HBM occupancy by allocator category">
+            <div class="tle-memory-bar" role="img" aria-label="Four equal logical segments: weights, KV cache highlighted, activations, workspaces. All values unknown.">
+              <div class="tle-memory-segment" data-kind="weights">W</div>
+              <div class="tle-memory-segment" data-kind="kv" data-active="true">KV</div>
+              <div class="tle-memory-segment" data-kind="activation">A</div>
+              <div class="tle-memory-segment" data-kind="workspace">WS</div>
+            </div>
+            <div class="tle-memory-legend">
+              <span>W · Weights — deployment receipt required [?]</span>
+              <span>KV · KV cache — grows with context and concurrency [?]</span>
+              <span>A · Activations — phase and kernel dependent [?]</span>
+              <span>WS · Workspaces + communication — engine dependent [?]</span>
+            </div>
+            <figcaption><strong>What competes for the hot tier.</strong> Equal visual shares on purpose: this build has no GPU deployment receipt, so inventing proportions would manufacture certainty. The lesson's replayed-context bytes land in the KV segment. <span class="tle-evidence-mark" data-evidence="unknown" data-evidence-symbol="?">Unknown until measured</span></figcaption>
+          </figure>
+
+          <figure class="tle-figure" aria-label="Memory and interconnect hierarchy">
+            <div class="tle-fabric-layers">
+              <div class="tle-fabric-layer">
+                <span class="tle-fabric-scope">Local</span>
+                <div class="tle-fabric-path">
+                  <span class="tle-fabric-chip" data-active="true">GPU</span>
+                  <span class="tle-fabric-chip" data-active="true">L2</span>
+                  <span class="tle-fabric-chip" data-active="true">HBM</span>
+                </div>
+              </div>
+              <div class="tle-fabric-layer">
+                <span class="tle-fabric-scope">Scale-up</span>
+                <div class="tle-fabric-path">
+                  <span class="tle-fabric-chip">GPU</span>
+                  <span class="tle-fabric-chip">NVLink / Infinity Fabric</span>
+                  <span class="tle-fabric-chip">GPU</span>
+                </div>
+              </div>
+              <div class="tle-fabric-layer">
+                <span class="tle-fabric-scope">Tier</span>
+                <div class="tle-fabric-path">
+                  <span class="tle-fabric-chip">GPU</span>
+                  <span class="tle-fabric-chip">PCIe / CXL</span>
+                  <span class="tle-fabric-chip">Host / device</span>
+                </div>
+              </div>
+              <div class="tle-fabric-layer">
+                <span class="tle-fabric-scope">Scale-out</span>
+                <div class="tle-fabric-path">
+                  <span class="tle-fabric-chip">Node</span>
+                  <span class="tle-fabric-chip">NIC / DPU</span>
+                  <span class="tle-fabric-chip">Network</span>
+                  <span class="tle-fabric-chip">Node</span>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Not one flat fabric.</strong> Local package memory, scale-up links, PCIe/CXL tiers, and scale-out networking are different scopes with different bandwidths and failure modes. This demo's production branch stays inside one node; the highlighted local layer is where its KV would sit. <span class="tle-evidence-mark" data-evidence="derived" data-evidence-symbol="D">Derived schematic</span></figcaption>
+          </figure>
+
           <div class="claim-boundary"><strong>Claim boundary.</strong> The lab shows placement functionally. It does not read HBM counters; local Mac columns are proxies (<code>observability_mimic: true</code>), never live LMCache, vLLM, or SGLang telemetry.</div>
         </section>
 
@@ -638,6 +791,44 @@ Codex:        total input = input_tokens
               <tr><td><strong>Nebius</strong></td><td>fixture_backed</td><td>Capture a real provider request ID.</td></tr>
             </tbody>
           </table></div>
+
+          <figure class="tle-figure" aria-label="Datacenter power, heat, and cost path behind the production branch">
+            <div class="tle-machine">
+              <div class="tle-machine-lane">
+                <span class="tle-machine-lane-label">Electrical</span>
+                <div class="tle-machine-flow">
+                  <span class="tle-machine-stage" data-evidence="unknown">Grid<i>[?]</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">Switchgear + UPS<i>[?]</i></span>
+                  <span class="tle-machine-stage">Rack PDU<i>V</i></span>
+                  <span class="tle-machine-stage" data-active="true" data-evidence="unknown">VRM → GPU + HBM<i>[?]</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">Fabric + storage<i>[?]</i></span>
+                </div>
+              </div>
+              <div class="tle-machine-join"><span></span><span>Electrical energy becomes heat over the same measured interval — one ledger, not two.</span></div>
+              <div class="tle-machine-lane">
+                <span class="tle-machine-lane-label">Thermal</span>
+                <div class="tle-machine-flow">
+                  <span class="tle-machine-stage">Silicon heat<i>D</i></span>
+                  <span class="tle-machine-stage">TIM / cold plate<i>V</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">CDU + facility loop<i>[?]</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">Final rejection<i>[?]</i></span>
+                </div>
+              </div>
+              <div class="tle-machine-join"><span></span><span>Transported heat is not an extra energy meter, and closed-loop coolant circulation is not site-water consumption.</span></div>
+              <div class="tle-machine-lane">
+                <span class="tle-machine-lane-label">Cost</span>
+                <div class="tle-machine-flow">
+                  <span class="tle-machine-stage">Task identity<i>M</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">Meter allocation<i>[?]</i></span>
+                  <span class="tle-machine-stage">Retries + rejects<i>M</i></span>
+                  <span class="tle-machine-stage" data-active="true">Accepted denominator<i>M</i></span>
+                  <span class="tle-machine-stage" data-evidence="unknown">Cost / accepted task<i>[?]</i></span>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Where the production branch's bill would come from.</strong> When this lesson's route flips to vLLM on Nebius, the accepted patch sits on top of this chain. Stage marks: M fixture-measured here, V vendor-rated, D derived, [?] unknown until a synchronized receipt lands — a vendor power envelope times task duration is not measured task energy. Vocabulary adapted from the Touchdown HBM learning-journey draft (publication hold). <span class="tle-evidence-mark" data-evidence="unknown" data-evidence-symbol="?">Unknown until measured</span></figcaption>
+          </figure>
+
           <div class="source-list">
             <h3>Primary surfaces</h3>
             <ul>
