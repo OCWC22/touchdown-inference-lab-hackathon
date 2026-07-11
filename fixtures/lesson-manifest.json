@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "stages": [
+    { "short_title": "Freeze the task", "title": "Start with the work that must succeed.", "lede": "The engine, cache, and router only matter if they complete the same accepted task.", "evidence_state": "fixture_backed" },
+    { "short_title": "Open the harness", "title": "The user typed one sentence. The harness added the iceberg.", "lede": "Instructions, tool schemas, repository context, history, and tool results all enter the request path.", "evidence_state": "fixture_backed" },
+    { "short_title": "Remove waste", "title": "Change context lifetime before changing hardware.", "lede": "Keep stable instructions stable, load procedures on demand, and project large tool output into compact evidence.", "evidence_state": "fixture_backed" },
+    { "short_title": "Choose an engine", "title": "The right engine changes when the workload changes.", "lede": "One private user on Apple Silicon and one hundred concurrent users on NVIDIA do not need the same runtime.", "evidence_state": "fixture_backed" },
+    { "short_title": "Run sponsors", "title": "Each sponsor performs one visible operation.", "lede": "Butterbase persists evidence, EverOS changes the next lesson, and Nebius runs the production inference branch.", "evidence_state": "configured" },
+    { "short_title": "Open inference", "title": "Follow the request from text to hot accelerator state.", "lede": "Tokens enter prefill, prefill creates KV, decode repeatedly reads weights and KV, and HBM holds the hot working set.", "evidence_state": "fixture_backed" },
+    { "short_title": "Compress with EverOS", "title": "Retrieve the useful case instead of replaying the whole trajectory.", "lede": "EverOS compresses verified agent work into Cases and repeated procedures into Skills. The next run retrieves only the relevant memory and must still pass the same acceptance test.", "evidence_state": "fixture_backed" },
+    { "short_title": "Verify the result", "title": "Separate the working product from the missing live proof.", "lede": "Local tests can pass while sponsor credentials, provider usage, and production economics remain unknown.", "evidence_state": "fixture_backed" },
+    { "short_title": "Contribute", "title": "The next assignment ships a real improvement.", "lede": "Reproduce one router mechanism, then resolve one bounded issue with code, tests, and a reviewable receipt.", "evidence_state": "configured" }
+  ],
+  "workload": {
+    "fixture_id": "TD-A-01-RETRY-001",
+    "task": "Fix the retry-state corruption bug without changing the public API. Run the acceptance tests and return a reviewable patch.",
+    "repository_revision": "touchdown-inference-lab@0.1.0",
+    "task_hash": "sha256:pending-verifier",
+    "acceptance": "Independent retry calls do not share attempt state; all supplied tests pass.",
+    "acceptance_hash": "sha256:pending-verifier",
+    "baseline": {
+      "context_characters": 40176,
+      "repeated_context_characters": 17420,
+      "provider_input_tokens": null,
+      "provider_output_tokens": null,
+      "provider_cost_usd": null,
+      "tool_calls": 14,
+      "tests_passed": true,
+      "evidence_state": "fixture_backed",
+      "context_segments": [
+        { "label": "System and sandbox", "characters": 3180 },
+        { "label": "Project rules", "characters": 6240 },
+        { "label": "Tool schemas", "characters": 7210 },
+        { "label": "Repository context", "characters": 12480 },
+        { "label": "Tool results", "characters": 10876 },
+        { "label": "User task", "characters": 190 }
+      ]
+    },
+    "optimized": {
+      "context_characters": 23210,
+      "repeated_context_characters": 5180,
+      "provider_input_tokens": null,
+      "provider_output_tokens": null,
+      "provider_cost_usd": null,
+      "tool_calls": 9,
+      "tests_passed": true,
+      "evidence_state": "fixture_backed"
+    }
+  },
+  "optimizations": [
+    { "id": "stable-prefix", "title": "Preserve the stable prefix", "description": "Keep system rules and tool order deterministic; move volatile state later.", "impact": "LESS RECOMPUTE" },
+    { "id": "skill-disclosure", "title": "Move procedures into an on-demand skill", "description": "Keep only universal facts in AGENTS.md or CLAUDE.md.", "impact": "SMALLER BASE" },
+    { "id": "tool-projection", "title": "Project large tool output", "description": "Keep failing tests and relevant frames; store the full log as an artifact.", "impact": "LESS DEAD STATE" },
+    { "id": "repo-memory", "title": "Reuse verified repository memory", "description": "Retain architecture facts and test commands, not temporary hypotheses.", "impact": "FEWER REREADS" }
+  ],
+  "learner_memory": {
+    "memory_id": "EVEROS-FIXTURE-MAYA-01",
+    "user_id": "maya-fixture-001",
+    "memory_type": "episodic_memory",
+    "misconception": "A production serving engine must always be faster than a local runtime.",
+    "default_instruction": "Pick the engine with the highest feature score.",
+    "changed_instruction": "Rank privacy, setup cost, hardware fit, concurrency, and acceptance quality before runtime features. For one private Apple Silicon user, compare MLX-LM and llama.cpp before vLLM.",
+    "source_session": "fixture-session-004",
+    "confidence": "fixture_only",
+    "evidence_state": "fixture_backed",
+    "full_trajectory_characters": 16840,
+    "retrieved_memory_characters": 1290,
+    "full_trajectory_tokens_estimated": 4210,
+    "retrieved_memory_tokens_estimated": 323,
+    "estimated_token_reduction_percent": 92,
+    "measurement_method": "fixture characters divided by four; model tokenizer and provider usage remain unmeasured",
+    "vendor_claim": "EverMind reports 7–15x lower token use and up to 90% reduction for its proprietary retrieval path; Touchdown has not independently reproduced that claim."
+  }
+}

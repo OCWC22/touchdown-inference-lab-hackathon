@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.1.0",
+  "profiles": {
+    "local": {
+      "summary": "One private user, Apple Silicon, offline preferred, 32K context, low operational overhead."
+    },
+    "production": {
+      "summary": "One hundred concurrent users, NVIDIA GPU service, strict p95 latency, shared model endpoint."
+    }
+  },
+  "engines": [
+    {
+      "id": "mlx-lm",
+      "name": "MLX-LM",
+      "scores": { "local": 96, "production": 28 },
+      "fit": {
+        "local": "Apple-native execution and unified-memory fit make it the first candidate for this local workload.",
+        "production": "It does not match the NVIDIA multi-user production target or its request-scheduling needs."
+      }
+    },
+    {
+      "id": "llama-cpp",
+      "name": "llama.cpp",
+      "scores": { "local": 91, "production": 52 },
+      "fit": {
+        "local": "Portable GGUF execution, privacy, and CPU/Metal flexibility fit one offline user.",
+        "production": "It can serve concurrent traffic, but this lesson needs the production scheduling and KV observability of vLLM."
+      }
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "scores": { "local": 82, "production": 35 },
+      "fit": {
+        "local": "The easiest local product surface, but it hides some low-level controls needed for this lesson.",
+        "production": "Model management alone does not satisfy the shared-service scheduling and evidence requirements."
+      }
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM on Nebius",
+      "scores": { "local": 32, "production": 97 },
+      "fit": {
+        "local": "Production scheduling complexity adds little value for one private laptop user.",
+        "production": "Continuous batching, paged KV, prefix reuse, metrics, and multi-GPU paths fit the concurrent service."
+      }
+    },
+    {
+      "id": "sglang",
+      "name": "SGLang",
+      "scores": { "local": 30, "production": 92 },
+      "fit": {
+        "local": "Its production runtime controls are excessive for this single-user local path.",
+        "production": "A strong candidate for prefix-heavy agent workloads, but the Nebius live path is not yet validated in this build."
+      }
+    }
+  ]
+}

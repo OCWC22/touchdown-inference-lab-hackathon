@@ -1,0 +1,86 @@
+{"kind":"deck","id":"pr/cvf15m","name":"Deck"}
+{"kind":"layout","layoutId":"8a0308f8-70f8-4fe6-a1de-1ffdad779ac1","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"16205c36-8581-483a-9fce-3cd405dcddcb","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/snfog9","slide":1,"title":"Run a coding task.","textShapes":4}
+{"kind":"textbox","id":"sh/4nixcnmp","slide":1,"name":"Title-3-1","text":"Run a coding task.\nSee what the AI remembered,\nrecomputed, and wasted.","textPreview":"Run a coding task. | See what the AI remembered, | recomputed, and wasted.","textChars":70,"textLines":3,"bbox":[41.33,182.55,992,261.57]}
+{"kind":"textbox","id":"sh/jm9w3i54","slide":1,"name":"Subtitle-4-2","text":"AI for Education Hackathon · Stanford · July 2026","textPreview":"AI for Education Hackathon · Stanford · July 2026","textChars":49,"textLines":1,"bbox":[41.33,497.87,598.67,113.41]}
+{"kind":"textbox","id":"sh/il0fax4j","slide":1,"name":"Subtitle-4-3","text":"TOUCHDOWN LABS","textPreview":"TOUCHDOWN LABS","textChars":14,"textLines":1,"bbox":[41.33,41.18,598.67,68.15]}
+{"kind":"textbox","id":"sh/hkre1sny","slide":1,"text":"Touchdown Inference Lab · verified local build","textPreview":"Touchdown Inference Lab · verified local build","textChars":46,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/snfog9","slide":1,"text":""}
+{"kind":"slide","id":"sl/le2avn","slide":2,"title":"02","textShapes":10}
+{"kind":"shape","id":"sh/87ux8ret","slide":2,"name":"Rounded-Rectangle-5-1","bbox":[41.33,317.33,374.67,312]}
+{"kind":"shape","id":"sh/761wzmx8","slide":2,"name":"Rounded-Rectangle-6-2","bbox":[452.67,317.33,374.67,312]}
+{"kind":"shape","id":"sh/m5sv6hw3","slide":2,"name":"Rounded-Rectangle-7-3","bbox":[864.28,317.33,374.67,312]}
+{"kind":"textbox","id":"sh/l4jexcfi","slide":2,"name":"Slide-Number-Placeholder-1-4","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/kjad4rex","slide":2,"name":"Title-2-5","text":"Coding agents hide the bill inside the loop.","textPreview":"Coding agents hide the bill inside the loop.","textChars":44,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/zi1wvmxc","slide":2,"name":"Content-Placeholder-9-6","text":"Fixture context before optimization","textPreview":"Fixture context before optimization","textChars":35,"textLines":1,"bbox":[73.74,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/yhsv2hwr","slide":2,"name":"Content-Placeholder-10-7","text":"Baseline tool loop","textPreview":"Baseline tool loop","textChars":18,"textLines":1,"bbox":[896.78,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/50ne9gfm","slide":2,"name":"Content-Placeholder-11-8","text":"Repeated fixture context","textPreview":"Repeated fixture context","textChars":24,"textLines":1,"bbox":[485.17,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/4fexgbe1","slide":2,"name":"Content-Placeholder-9-9","text":"40,176\nchars","textPreview":"40,176 | chars","textChars":12,"textLines":2,"bbox":[73.74,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/ax0725of","slide":2,"name":"Content-Placeholder-9-10","text":"17,420\nrepeated","textPreview":"17,420 | repeated","textChars":15,"textLines":2,"bbox":[484.3,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/vy9obap0","slide":2,"name":"Content-Placeholder-9-11","text":"14\ntool calls","textPreview":"14 | tool calls","textChars":13,"textLines":2,"bbox":[898.94,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/wzip4f65","slide":2,"name":"Content-Placeholder-15-12","text":"The user sees a patch. The system pays for instructions, repository context, tool schemas, logs, retries, model calls, and verification.\nThe first assignment opens that path and optimizes the agent the learner already uses.","textPreview":"The user sees a patch. The system pays for instructions, repository context, tool schemas, logs, retries, model calls, and verification. ...","textChars":223,"textLines":2,"bbox":[41.33,119.51,1197.33,167.92]}
+{"kind":"textbox","id":"sh/x0r6dk7q","slide":2,"text":"Fixture TD-A-01-RETRY-001 · provider tokens and costs remain unmeasured","textPreview":"Fixture TD-A-01-RETRY-001 · provider tokens and costs remain unmeasured","textChars":71,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/le2avn","slide":2,"text":""}
+{"kind":"slide","id":"sl/jsxqcy","slide":3,"title":"03","textShapes":9}
+{"kind":"textbox","id":"sh/u9sv2lwf","slide":3,"name":"Slide-Number-Placeholder-3-2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/hcjedgfq","slide":3,"name":"Title-10-3","text":"One accepted task becomes the complete systems lesson.","textPreview":"One accepted task becomes the complete systems lesson.","textChars":54,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/wbad4bel","slide":3,"name":"Google-Shape-2259-p159-4","bbox":[35.46,354.2,1285.61,0.03]}
+{"kind":"shape","id":"sh/761w76xo","slide":3,"name":"Google-Shape-2260-p159-5","bbox":[35.46,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/m58vy1w3","slide":3,"name":"Google-Shape-2261-p159-6","bbox":[446.38,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/98je9gfu","slide":3,"name":"Google-Shape-2262-p159-7","bbox":[858.38,348.58,11.24,11.24]}
+{"kind":"textbox","id":"sh/87ad0be9","slide":3,"name":"Content-Placeholder-15-8","text":"CAPTURE","textPreview":"CAPTURE","textChars":7,"textLines":1,"bbox":[41.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/r2lwjqd8","slide":3,"name":"Content-Placeholder-15-9","text":"UNDERSTAND","textPreview":"UNDERSTAND","textChars":10,"textLines":1,"bbox":[450.83,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/61cfa5wn","slide":3,"name":"Content-Placeholder-15-10","text":"OPTIMIZE","textPreview":"OPTIMIZE","textChars":8,"textLines":1,"bbox":[863.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/0rul4nah","slide":3,"name":"Text-Placeholder-16-11","text":"Touchdown\nShows context lifetime, routing, prefill, KV, decode, and verification.","textPreview":"Touchdown | Shows context lifetime, routing, prefill, KV, decode, and verification.","textChars":81,"textLines":2,"bbox":[453.24,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/1s3mdsb2","slide":3,"name":"Text-Placeholder-16-12","text":"Claude Code\nRuns the frozen coding task and emits the agent trajectory.","textPreview":"Claude Code | Runs the frozen coding task and emits the agent trajectory.","textChars":71,"textLines":2,"bbox":[41.98,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/epc32dsb","slide":3,"name":"Text-Placeholder-16-13","text":"Receipt\nProves what changed without weakening the acceptance test.","textPreview":"Receipt | Proves what changed without weakening the acceptance test.","textChars":66,"textLines":2,"bbox":[858.57,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/fql4bitw","slide":3,"text":"Anthropic Claude Code CLI reference · docs.anthropic.com/en/docs/claude-code/cli-usage","textPreview":"Anthropic Claude Code CLI reference · docs.anthropic.com/en/docs/claude-code/cli-usage","textChars":86,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/jsxqcy","slide":3,"text":""}
+{"kind":"slide","id":"sl/axvzgi","slide":4,"title":"04","textShapes":6}
+{"kind":"textbox","id":"sh/xgzqhcfe","slide":4,"name":"Google-Shape-532-p58-2","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/ado76xgn","slide":4,"name":"Google-Shape-533-p58-3","text":"The sponsors perform real work in the same path.","textPreview":"The sponsors perform real work in the same path.","textChars":48,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/bex8f2h8","slide":4,"name":"Google-Shape-558-p61-4","text":"Butterbase\n\nStores redacted traces, verification, and the hackathon receipt.","textPreview":"Butterbase |  | Stores redacted traces, verification, and the hackathon receipt.","textChars":76,"textLines":3,"bbox":[41.33,421.33,374.67,208]}
+{"kind":"textbox","id":"sh/k3q9c7yp","slide":4,"name":"Google-Shape-559-p61-5","text":"EverOS\n\nCompresses verified trajectories into Cases and reusable Skills for the next task.","textPreview":"EverOS |  | Compresses verified trajectories into Cases and reusable Skills for the next task.","textChars":90,"textLines":3,"bbox":[453.33,421.33,374.67,208]}
+{"kind":"textbox","id":"sh/l4zqlcfa","slide":4,"name":"Google-Shape-560-p61-6","text":"Nebius\n\nRuns the production inference branch when live GPU credentials are present.","textPreview":"Nebius |  | Runs the production inference branch when live GPU credentials are present.","textChars":83,"textLines":3,"bbox":[864.28,421.33,374.67,208]}
+{"kind":"shape","id":"sh/yh87axgz","slide":4,"name":"Google-Shape-561-p61-7","bbox":[449.33,355.1,33.13,37.15]}
+{"kind":"shape","id":"sh/jih8j2xk","slide":4,"name":"Google-Shape-562-p61-8","bbox":[42.14,354.67,34.34,38.01]}
+{"kind":"shape","id":"sh/87a9gry1","slide":4,"name":"Google-Shape-563-p61-9","bbox":[864.21,357.67,35.55,28.44]}
+{"kind":"textbox","id":"sh/t8jqpwfm","slide":4,"text":"Butterbase app app_b197i2548pk2 · EverOS v1 agent memory API · Nebius branch remains fixture-backed","textPreview":"Butterbase app app_b197i2548pk2 · EverOS v1 agent memory API · Nebius branch remains fixture-backed","textChars":99,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/axvzgi","slide":4,"text":""}
+{"kind":"slide","id":"sl/dondl3","slide":5,"title":"05","textShapes":9}
+{"kind":"textbox","id":"sh/wze10rq1","slide":5,"name":"Slide-Number-Placeholder-3-2","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/by5k7mpg","slide":5,"name":"Title-10-3","text":"Claude Code is the workload generator, not the product.","textPreview":"Claude Code is the workload generator, not the product.","textChars":55,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/axwjyh8v","slide":5,"name":"Google-Shape-2259-p159-4","bbox":[35.46,354.2,1285.61,0.03]}
+{"kind":"shape","id":"sh/9wn25w7q","slide":5,"name":"Google-Shape-2260-p159-5","bbox":[35.46,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/obe1wrq5","slide":5,"name":"Google-Shape-2261-p159-6","bbox":[446.38,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/na5k3mpk","slide":5,"name":"Google-Shape-2262-p159-7","bbox":[858.38,348.58,11.24,11.24]}
+{"kind":"textbox","id":"sh/m9wjuh8z","slide":5,"name":"Content-Placeholder-15-8","text":"RUN","textPreview":"RUN","textChars":3,"textLines":1,"bbox":[41.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/18321c7e","slide":5,"name":"Content-Placeholder-15-9","text":"LEARN","textPreview":"LEARN","textChars":5,"textLines":1,"bbox":[450.83,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/07u1s7qt","slide":5,"name":"Content-Placeholder-15-10","text":"REPLAY","textPreview":"REPLAY","textChars":6,"textLines":1,"bbox":[863.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/2t8r2xcr","slide":5,"name":"Text-Placeholder-16-11","text":"EverOS search\nRetrieve the relevant Case or Skill instead of replaying full history.","textPreview":"EverOS search | Retrieve the relevant Case or Skill instead of replaying full history.","textChars":84,"textLines":2,"bbox":[453.24,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/3uh8v2tw","slide":5,"name":"Text-Placeholder-16-12","text":"claude -p\nStream structured events from one bounded coding task.","textPreview":"claude -p | Stream structured events from one bounded coding task.","textChars":64,"textLines":2,"bbox":[41.98,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/ovq947uh","slide":5,"name":"Text-Placeholder-16-13","text":"InferRouter\nSelect a route using workload, state, quality, latency, and cost.","textPreview":"InferRouter | Select a route using workload, state, quality, latency, and cost.","textChars":77,"textLines":2,"bbox":[858.57,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/pwzqxcb2","slide":5,"text":"Official Claude Code flags: -p, --output-format stream-json, --mcp-config, --max-turns","textPreview":"Official Claude Code flags: -p, --output-format stream-json, --mcp-config, --max-turns","textChars":86,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/dondl3","slide":5,"text":""}
+{"kind":"slide","id":"sl/a1bk42","slide":6,"title":"06","textShapes":10}
+{"kind":"shape","id":"sh/zy1obylo","slide":6,"name":"Rounded-Rectangle-5-1","bbox":[41.33,317.33,374.67,312]}
+{"kind":"shape","id":"sh/0zap43m9","slide":6,"name":"Rounded-Rectangle-6-2","bbox":[452.67,317.33,374.67,312]}
+{"kind":"shape","id":"sh/10j6d83u","slide":6,"name":"Rounded-Rectangle-7-3","bbox":[864.28,317.33,374.67,312]}
+{"kind":"textbox","id":"sh/q9snyt47","slide":6,"name":"Slide-Number-Placeholder-1-4","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/ra1o7yls","slide":6,"name":"Title-2-5","text":"The demo separates proof from promise.","textPreview":"The demo separates proof from promise.","textChars":38,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/cvap03mx","slide":6,"name":"Content-Placeholder-9-6","text":"Local tests passing","textPreview":"Local tests passing","textChars":19,"textLines":1,"bbox":[73.74,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/dwj6983i","slide":6,"name":"Content-Placeholder-10-7","text":"Frozen acceptance contract","textPreview":"Frozen acceptance contract","textChars":26,"textLines":1,"bbox":[896.78,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/a5c7ad4b","slide":6,"name":"Content-Placeholder-11-8","text":"Butterbase receipt persisted","textPreview":"Butterbase receipt persisted","textChars":28,"textLines":1,"bbox":[485.17,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/b6lojilw","slide":6,"name":"Content-Placeholder-9-9","text":"10 / 10","textPreview":"10 / 10","textChars":7,"textLines":1,"bbox":[73.74,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/3mlon690","slide":6,"name":"Content-Placeholder-9-10","text":"1 live row","textPreview":"1 live row","textChars":10,"textLines":1,"bbox":[484.3,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/ilcne1sf","slide":6,"name":"Content-Placeholder-9-11","text":"1 task","textPreview":"1 task","textChars":6,"textLines":1,"bbox":[898.94,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/5on6pwr6","slide":6,"name":"Content-Placeholder-15-12","text":"What works now: the lesson, frozen task, sponsor contracts, EverOS SDK, and a real Butterbase data write.\nWhat remains: a live EverOS retrieval, live Nebius request, and provider-measured token economics.","textPreview":"What works now: the lesson, frozen task, sponsor contracts, EverOS SDK, and a real Butterbase data write. | What remains: a live EverOS r...","textChars":204,"textLines":2,"bbox":[41.33,119.51,1197.33,167.92]}
+{"kind":"textbox","id":"sh/4nupgral","slide":6,"text":"Butterbase row e5ff8fc6-c338-43d1-823d-9f6122009454 · local npm test and verifier","textPreview":"Butterbase row e5ff8fc6-c338-43d1-823d-9f6122009454 · local npm test and verifier","textChars":81,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/a1bk42","slide":6,"text":""}
+{"kind":"slide","id":"sl/g5vn6u","slide":7,"title":"Start with the agent","textShapes":4}
+{"kind":"textbox","id":"sh/1knu9ovy","slide":7,"name":"Title-3-1","text":"Start with the agent\nyou already use.\nShip one verified improvement.","textPreview":"Start with the agent | you already use. | Ship one verified improvement.","textChars":68,"textLines":3,"bbox":[41.33,182.55,992,261.57]}
+{"kind":"textbox","id":"sh/ehwbytwn","slide":7,"name":"Subtitle-4-2","text":"Learn the system\nProve the result\nContribute the fix","textPreview":"Learn the system | Prove the result | Contribute the fix","textChars":52,"textLines":3,"bbox":[41.33,522.13,374.67,113.41]}
+{"kind":"textbox","id":"sh/zi5c7yd8","slide":7,"name":"Subtitle-4-3","text":"THE ASK","textPreview":"THE ASK","textChars":7,"textLines":1,"bbox":[41.33,41.18,169.33,68.15]}
+{"kind":"textbox","id":"sh/cfutwjeh","slide":7,"text":"Touchdown Labs · AI-native transformation, backed by infrastructure optimization","textPreview":"Touchdown Labs · AI-native transformation, backed by infrastructure optimization","textChars":80,"textLines":1,"bbox":[41,682,1120,18]}
+{"kind":"notes","id":"nt/g5vn6u","slide":7,"text":""}

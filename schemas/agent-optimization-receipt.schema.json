@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://touchdown-labs.com/schemas/agent-optimization-receipt.schema.json",
+  "title": "Touchdown agent optimization receipt",
+  "type": "object",
+  "required": ["kind", "version", "receipt_id", "workload", "decision", "result", "integrations", "claim_status", "limitations"],
+  "properties": {
+    "kind": { "const": "td.agent_optimization_receipt" },
+    "version": { "type": "string" },
+    "receipt_id": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "workload": {
+      "type": "object",
+      "required": ["fixture_id", "repository_revision", "task_hash", "acceptance_hash"]
+    },
+    "decision": { "type": "object" },
+    "result": {
+      "type": "object",
+      "required": ["context_characters", "repeated_context_characters", "provider_input_tokens", "provider_output_tokens", "provider_cost_usd", "tool_calls", "tests_passed"]
+    },
+    "integrations": { "type": "object", "required": ["butterbase", "everos", "nebius"] },
+    "claim_status": { "enum": ["configured", "fixture_backed", "live", "blocked"] },
+    "limitations": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  }
+}

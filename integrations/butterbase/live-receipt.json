@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1.0",
+  "verified_at": "2026-07-11",
+  "app_id": "app_b197i2548pk2",
+  "app_name": "autopilot-hackathon",
+  "region": "us-east-1",
+  "table": "eval_runs",
+  "row_id": "e5ff8fc6-c338-43d1-823d-9f6122009454",
+  "config": "touchdown_everos_memory_fixture",
+  "fixture_id": "TD-A-01-RETRY-001",
+  "receipt_id": "TD-A-01-EVEROS-BUTTERBASE-001",
+  "tests_passed": true,
+  "evidence_state": "live_validated_data_write_with_fixture_payload",
+  "provider_tokens_measured": false,
+  "notes": "The Butterbase dashboard accepted and returned this row. The browser adapter still queues locally until the receipt function is deployed and bound."
+}

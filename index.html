@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Optimize the coding agent you already use, then follow the same workload into tokens, routing, vLLM, KV cache, HBM, and verified task economics.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Touchdown Inference Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='12' font-weight='700' fill='white'%3ETL%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#lab">Skip to the lab</a>
+  <header class="site-nav">
+    <a class="brand" href="#top" aria-label="Touchdown Labs home">
+      <span class="brand-mark" aria-hidden="true">TL</span>
+      <span>Touchdown Labs</span>
+    </a>
+    <div class="nav-meta">AI for Education Hackathon · Build 01</div>
+    <a class="nav-cta" href="#receipts">View evidence <span aria-hidden="true">&rarr;</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <p class="eyebrow">§ 01 / TOUCHDOWN INFERENCE LAB</p>
+      <h1 id="hero-title">Make your own coding agent cheaper. <strong>Then open the system underneath it.</strong></h1>
+      <p class="hero-copy">Run one frozen coding task. See what the harness loaded, what the model processed, where reusable state lived, and whether the final patch actually passed.</p>
+      <div class="hero-actions">
+        <button class="button button-primary" id="start-lab" type="button">Start the three-minute lab <span aria-hidden="true">&rarr;</span></button>
+        <a class="text-link" href="skills/touchdown-agent-optimizer/SKILL.md">Open the agent skill <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="scope-row" aria-label="Current build boundaries">
+        <span>One frozen task</span>
+        <span>One local decision</span>
+        <span>One production route</span>
+        <span>One verified receipt</span>
+      </div>
+    </section>
+
+    <section class="status-strip" aria-label="Sponsor integration status">
+      <div class="page-shell status-grid" id="sponsor-status"></div>
+    </section>
+
+    <section class="lab-section page-shell" id="lab" aria-labelledby="lab-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">§ 02 / LIVE LESSON</p>
+          <h2 id="lab-title">Follow one task all the way down.</h2>
+        </div>
+        <p>Every number declares its evidence state. Deterministic replay is not presented as live infrastructure.</p>
+      </div>
+
+      <div class="lab-shell">
+        <nav class="stage-rail" aria-label="Lab stages">
+          <ol id="stage-list"></ol>
+        </nav>
+
+        <article class="lesson-panel" aria-live="polite" aria-labelledby="stage-title">
+          <div class="lesson-kicker">
+            <span id="stage-index">01 / 08</span>
+            <span class="evidence-badge" id="stage-evidence">FIXTURE_BACKED</span>
+          </div>
+          <h3 id="stage-title"></h3>
+          <p class="lesson-lede" id="stage-lede"></p>
+          <div id="stage-content"></div>
+          <div class="lesson-actions">
+            <button class="button button-secondary" id="previous-stage" type="button">Previous</button>
+            <button class="button button-primary" id="next-stage" type="button">Next <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+
+        <aside class="evidence-panel" aria-labelledby="evidence-title">
+          <div class="panel-heading">
+            <p class="eyebrow">CURRENT RECEIPT</p>
+            <h3 id="evidence-title">What the system can prove.</h3>
+          </div>
+          <dl class="receipt-list" id="live-receipt"></dl>
+          <div class="claim-boundary">
+            <strong>Claim boundary.</strong>
+            <p id="claim-boundary">This replay proves the interface and receipt contract. It does not prove a production cost reduction.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="mechanism page-shell" aria-labelledby="mechanism-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">§ 03 / THE ACTUAL PATH</p>
+          <h2 id="mechanism-title">Tokens are the front door, not the whole bill.</h2>
+        </div>
+        <p>The user task becomes model-specific token IDs. Prefill builds KV state. Decode repeatedly reads weights and KV. Verification decides whether any of that work was useful.</p>
+      </div>
+      <div class="causal-path" aria-label="Inference causal path">
+        <div><span>01</span><strong>User task</strong><small>What must change?</small></div>
+        <div><span>02</span><strong>Harness</strong><small>What context was added?</small></div>
+        <div><span>03</span><strong>Tokens</strong><small>What does the model process?</small></div>
+        <div><span>04</span><strong>Prefill</strong><small>What state is created?</small></div>
+        <div><span>05</span><strong>KV cache</strong><small>What can be reused?</small></div>
+        <div><span>06</span><strong>Decode</strong><small>What remains on the critical path?</small></div>
+        <div><span>07</span><strong>HBM</strong><small>Where does hot state live?</small></div>
+        <div><span>08</span><strong>Tests</strong><small>Was the task accepted?</small></div>
+      </div>
+    </section>
+
+    <section class="receipts-section" id="receipts" aria-labelledby="receipts-title">
+      <div class="page-shell">
+        <div class="section-heading inverted">
+          <div>
+            <p class="eyebrow">§ 04 / EVIDENCE SPINE</p>
+            <h2 id="receipts-title">A result without provenance is not a receipt.</h2>
+          </div>
+          <p>Butterbase stores the run. EverOS changes the next lesson. Nebius runs the production branch. The local verifier keeps the demo honest when a sponsor service is unavailable.</p>
+        </div>
+        <div class="receipt-grid" id="receipt-grid"></div>
+        <div class="receipt-actions">
+          <button class="button button-inverse" id="download-receipt" type="button">Download receipt JSON <span aria-hidden="true">&rarr;</span></button>
+          <button class="button button-outline-inverse" id="persist-receipt" type="button">Persist through Butterbase <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <p class="action-result" id="persist-result" role="status"></p>
+      </div>
+    </section>
+
+    <section class="sources page-shell" aria-labelledby="sources-title">
+      <p class="eyebrow">§ 05 / PRIMARY SOURCES</p>
+      <h2 id="sources-title">The integration contract is inspectable.</h2>
+      <ul>
+        <li><a href="https://luma.com/beta-19of">Official hackathon page <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://docs.butterbase.ai/hackathon/">Butterbase hackathon submission flow <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://docs.evermind.ai/llms-full.txt">EverOS complete API reference <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://arxiv.org/abs/2601.02163">EverMemOS research paper: structured long-horizon memory <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://docs.nebius.com/serverless/tutorials/deploy-model">Nebius Serverless AI vLLM deployment <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="../../inferguard/td_inferguard/usage/">InferGuard usage tracing code <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer page-shell">
+    <span>Touchdown Labs · AI-native transformation, backed by infrastructure optimization.</span>
+    <span>Standalone hackathon surface · Held HBM manuscript unchanged.</span>
+  </footer>
+
+  <script src="integrations/config.js"></script>
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
