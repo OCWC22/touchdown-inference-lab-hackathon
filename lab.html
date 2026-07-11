@@ -76,9 +76,10 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid
 .tle-scene-title { margin: 0; color: var(--ink); font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 500; line-height: 1.18; letter-spacing: -0.03em; text-wrap: balance; }
 .tle-scene-summary { margin: 0; color: var(--ink-600); font-size: 0.83rem; line-height: 1.55; }
 
-/* receipt banner */
-.tle-receipt-banner { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: 8px 12px; align-items: center; margin-top: 10px; padding: 7px 9px; border: 1px solid var(--ink-400); border-left: 3px solid var(--ink-600); background: var(--ink-100); }
-.tle-receipt-mode { color: var(--ink); letter-spacing: 0.04em; }
+/* receipt banner — always stacked; a side-by-side grid squeezes the detail
+   column into letter-per-line wrapping when the engine column is narrow */
+.tle-receipt-banner { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; padding: 8px 10px; border: 1px solid var(--ink-400); border-left: 3px solid var(--ink-600); background: var(--ink-100); }
+.tle-receipt-mode { color: var(--ink); letter-spacing: 0.04em; line-height: 1.45; }
 .tle-receipt-detail { min-width: 0; color: var(--ink-600); font-family: var(--font-mono); font-size: 0.6875rem; line-height: 1.4; overflow-wrap: anywhere; }
 
 /* perspective toolbar */
