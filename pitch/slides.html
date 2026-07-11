@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Touchdown Inference Lab — Hackathon Slides</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='12' font-weight='700' fill='white'%3ETL%3C/text%3E%3C/svg%3E">
+<style>
+:root{--black:#0a0a0a;--white:#fff;--gray-200:#e5e5e5;--gray-400:#999;--gray-500:#777}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--white);color:var(--black);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;border-bottom:1px solid #ccc;font-weight:600}
+a:hover{border-bottom-color:var(--black)}
+.deck{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory}
+section.slide{position:relative;min-height:100vh;scroll-snap-align:start;
+  display:flex;flex-direction:column;padding:56px 4rem 84px;max-width:1400px;margin:0 auto}
+.eyebrow{color:var(--gray-400);font-weight:700;letter-spacing:1.4px;text-transform:uppercase;font-size:.75rem;margin:0 0 14px}
+h1{font-size:clamp(2rem,4.6vw,3.9rem);font-weight:300;letter-spacing:-2px;line-height:1.06;margin:0 0 10px}
+h1 strong{font-weight:300;color:var(--gray-400)}
+h2{font-size:1.05rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;margin:0 0 10px}
+p{color:var(--gray-500);line-height:1.75;font-size:1rem;margin:8px 0 0;max-width:900px}
+strong{color:var(--black)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;margin-bottom:34px;letter-spacing:-.3px}
+.brand-mark{width:30px;height:30px;background:var(--black);color:var(--white);display:grid;place-items:center;
+  font-size:.7rem;font-weight:800}
+.grid{display:grid;gap:16px;margin-top:26px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.card{border:1px solid var(--gray-200);background:#f7f7f7;padding:18px 20px}
+.card small{display:block;color:var(--gray-400);font-weight:800;letter-spacing:1.1px;text-transform:uppercase;font-size:.68rem;margin-bottom:8px}
+.card .big{display:block;font-size:2.1rem;font-weight:300;letter-spacing:-1.5px;line-height:1.1}
+.card p{font-size:.88rem;line-height:1.6;margin-top:8px}
+.stat-note{font-size:.72rem;color:var(--gray-400);margin-top:10px;letter-spacing:.3px;text-transform:uppercase;font-weight:700}
+.quote{border-left:3px solid var(--black);padding:6px 0 6px 20px;margin:26px 0 0;max-width:880px}
+.quote p{color:var(--black);font-size:1.12rem;line-height:1.7;margin:0}
+.footline{position:absolute;left:4rem;right:4rem;bottom:26px;display:flex;justify-content:space-between;
+  color:var(--gray-400);font-size:.78rem;border-top:1px solid var(--gray-200);padding-top:12px}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.pill-row span{border:1px solid var(--gray-200);padding:6px 14px;font-size:.8rem;color:var(--gray-500);font-weight:600}
+.learn-strip{margin-top:26px;border:1px solid var(--gray-200);padding:16px 20px;background:#f7f7f7}
+.learn-strip small{display:block;color:var(--gray-400);font-weight:800;letter-spacing:1.1px;text-transform:uppercase;font-size:.68rem;margin-bottom:8px}
+.learn-strip ul{margin:0;padding-left:18px;color:var(--gray-500);line-height:1.9;font-size:.92rem}
+video{display:block;width:100%;max-width:1060px;background:var(--black);border:1px solid var(--gray-200);margin-top:22px}
+.video-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;color:var(--gray-400);font-size:.8rem;font-weight:600;letter-spacing:.3px}
+.counter{position:fixed;right:22px;bottom:22px;z-index:20;background:var(--black);color:var(--white);
+  font-size:.72rem;font-weight:700;padding:6px 12px;letter-spacing:1px}
+@media (max-width:900px){
+  section.slide{padding:36px 1.4rem 84px}
+  .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+  .footline{left:1.4rem;right:1.4rem}
+}
+@media print{
+  .deck{height:auto;overflow:visible}
+  section.slide{min-height:auto;page-break-after:always;padding-bottom:120px}
+  .counter{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ─────────────────────────── SLIDE 1 · TEAM ─────────────────────────── -->
+  <section class="slide" id="slide-1" aria-label="Slide 1: Team introduction">
+    <div class="brand"><span class="brand-mark">TL</span> Touchdown Labs</div>
+    <p class="eyebrow">Slide 01 / Team Introduction</p>
+    <h1>Touchdown Labs. <strong>We lower inference bills for a living.</strong></h1>
+    <p><strong>William Chen — Founder &amp; CEO, Touchdown Labs.</strong> Bay Area inference-optimization
+      company: we baseline real AI workloads, measure <strong>cost per successful AI task</strong>, and ship
+      the fix — across prompts, context, agent tool loops, prefill, decode, KV cache, routing, and serving engines.
+      Active across Stanford, Berkeley, and SJSU technical communities.</p>
+
+    <div class="grid cols-3">
+      <div class="card">
+        <small>Published inference education</small>
+        <p><strong>Touchdown Labs blog</strong> — <a href="https://touchdown-labs.com/blog/kv-cache-memory-hierarchy-inference.html">KV Cache Is Becoming the Memory Hierarchy of Inference</a>,
+        <a href="https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache.html">local Mac MLX KV-cache learning loop</a>,
+        <a href="https://touchdown-labs.com/blog/runtime-boundary-tokenspeed-blackwell-vera-rubin.html">TokenSpeed, Blackwell, and Vera Rubin</a>.</p>
+      </div>
+      <div class="card">
+        <small>Open-source evidence</small>
+        <p><strong><a href="https://github.com/Touchdown-Labs/mac-mlx-kv-cache-stress-demo">mac-mlx-kv-cache-stress-demo</a></strong> — verified 50-turn agent KV-pressure runs on a 16GB M5 MacBook Pro — plus InferGuard usage tracing for real Claude / Codex token accounting.</p>
+      </div>
+      <div class="card">
+        <small>This build, already verified</small>
+        <p><strong>10 / 10 local tests passing</strong>, frozen acceptance contract, and a live Butterbase
+        data write (receipt row <code style="font-size:.78em">e5ff8fc6…9454</code>). Fixture and live states are always labeled.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p><strong>Team-to-problem alignment:</strong> our day job is recovering wasted token spend for AI companies.
+      This hackathon build teaches students the same discipline — on the coding agent they already use.</p>
+    </div>
+
+    <div class="footline"><span>Touchdown Labs · AI for Education Hackathon · Stanford · July 2026</span><span>01 / 03</span></div>
+  </section>
+
+  <!-- ──────────────────────── SLIDE 2 · PRODUCT ──────────────────────── -->
+  <section class="slide" id="slide-2" aria-label="Slide 2: Product overview">
+    <div class="brand"><span class="brand-mark">TL</span> Touchdown Inference Lab</div>
+    <p class="eyebrow">Slide 02 / Product Overview</p>
+    <h1>Run one coding task. <strong>See every token the agent remembered, recomputed, and wasted — then fix it.</strong></h1>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <small>The pain</small>
+        <p><strong>Coding agents hide the bill inside the loop.</strong> One small retry-bug fix loaded
+        <strong>40,176 characters</strong> of harness context — <strong>17,420 of them repeated</strong> (43%)
+        across 14 tool calls. Students see a patch; nobody teaches them what the system paid, or how to
+        make it cheaper without breaking the tests.</p>
+      </div>
+      <div class="card">
+        <small>The built solution</small>
+        <p><strong>A browser lab on a frozen, reproducible coding task.</strong> A three-minute, nine-stage lesson:
+        classify context lifetime, apply one optimization policy at a time, watch the engine decision flip from
+        local MLX-LM to vLLM on Nebius at 100 users, follow text → tokens → prefill → KV cache → HBM,
+        and export a signed optimization receipt. EverOS memory makes the next lesson adapt; Butterbase persists the evidence.</p>
+      </div>
+    </div>
+
+    <div class="grid cols-3">
+      <div class="card">
+        <small>Context after one policy</small>
+        <span class="big">−42%</span>
+        <p>40,176 → 23,210 characters on the same task, same acceptance test still passing.</p>
+        <div class="stat-note">Deterministic fixture · labeled</div>
+      </div>
+      <div class="card">
+        <small>Repeated context</small>
+        <span class="big">−70%</span>
+        <p>17,420 → 5,180 repeated characters once stable prefix + tool-output projection are applied.</p>
+        <div class="stat-note">Deterministic fixture · labeled</div>
+      </div>
+      <div class="card">
+        <small>Memory vs full replay</small>
+        <span class="big">−92%</span>
+        <p>~4,210 → ~323 estimated tokens by retrieving an EverOS Case instead of replaying the full trajectory.</p>
+        <div class="stat-note">Local estimate · not a provider measurement</div>
+      </div>
+    </div>
+
+    <div class="learn-strip">
+      <small>Learn how to do this — the lab ships its own curriculum</small>
+      <ul>
+        <li><strong>Accounting first:</strong> <code>total input = input_tokens + cache_creation_input_tokens + cache_read_input_tokens</code> (Claude Code) — the repo's <a href="../skills/touchdown-agent-optimizer/SKILL.md">agent-optimizer skill</a> makes every claim a before/after receipt.</li>
+        <li><strong>Take it home:</strong> run the same KV-cache loop on your own laptop — <a href="../blog/qwen36-openclaw-mlx-macbook-kv-cache.html">Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX</a> (mirrored in this repo).</li>
+        <li><strong>Go deeper:</strong> <a href="https://touchdown-labs.com/blog/kv-cache-memory-hierarchy-inference.html">KV Cache Is Becoming the Memory Hierarchy of Inference</a> — why the same waste shows up at GB200 scale.</li>
+      </ul>
+    </div>
+
+    <div class="footline"><span>Touchdown Labs · AI for Education Hackathon · Stanford · July 2026</span><span>02 / 03</span></div>
+  </section>
+
+  <!-- ──────────────────────── SLIDE 3 · VIDEO DEMO ──────────────────────── -->
+  <section class="slide" id="slide-3" aria-label="Slide 3: Video demo">
+    <div class="brand"><span class="brand-mark">TL</span> Touchdown Inference Lab</div>
+    <p class="eyebrow">Slide 03 / Video Demo · Working operational build</p>
+    <h1>43 seconds. <strong>The real build, end to end.</strong></h1>
+
+    <video controls preload="metadata" poster="../demo-video/browser-demo-contact-sheet.jpg">
+      <source src="../demo-video/touchdown-inference-lab-browser-demo.mp4" type="video/mp4">
+      Your browser cannot play this video. Open
+      <a href="../demo-video/touchdown-inference-lab-browser-demo.mp4">demo-video/touchdown-inference-lab-browser-demo.mp4</a>.
+    </video>
+
+    <div class="video-meta">
+      <span>0:43 RUNTIME · UNDER THE 2:00 CAP</span>
+      <span>1280 × 720 · H.264 · 30 FPS</span>
+      <span>BROWSER-ONLY WALKTHROUGH OF THE LIVE LOCAL BUILD</span>
+    </div>
+
+    <p style="margin-top:18px">Shown in order: the pinned coding task and acceptance test, context-lifetime optimization,
+    the local-to-production engine decision, sponsor architecture (Butterbase · EverOS · Nebius), the self-hosted
+    inference path, EverOS adaptive memory changing the next lesson, the verification table, and receipt export.</p>
+    <p><strong>Evidence boundary:</strong> the walkthrough uses the demo's explicitly labeled deterministic fixture
+    states. It does not present fixture data as a live production run.</p>
+
+    <div class="pill-row">
+      <span>npm test · 10/10</span><span>npm run verify · pass</span><span>Butterbase live write</span><span>Receipt schema + secret scan</span>
+    </div>
+
+    <div class="footline"><span>Touchdown Labs · AI for Education Hackathon · Stanford · July 2026</span><span>03 / 03</span></div>
+  </section>
+
+</div>
+<div class="counter" id="counter" aria-hidden="true">01 / 03</div>
+<script>
+  const deck = document.getElementById('deck');
+  const slides = [...document.querySelectorAll('.slide')];
+  const counter = document.getElementById('counter');
+  function currentIndex(){
+    return Math.round(deck.scrollTop / window.innerHeight);
+  }
+  function go(i){
+    const target = Math.max(0, Math.min(slides.length - 1, i));
+    slides[target].scrollIntoView({behavior:'smooth'});
+  }
+  deck.addEventListener('scroll', () => {
+    const i = Math.max(0, Math.min(slides.length - 1, currentIndex()));
+    counter.textContent = String(i + 1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
+  }, {passive:true});
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(currentIndex() + 1); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(currentIndex() - 1); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+  });
+</script>
+</body>
+</html>

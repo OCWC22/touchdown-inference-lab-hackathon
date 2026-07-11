@@ -26,6 +26,8 @@ Open `http://127.0.0.1:4173`.
 - EverOS misconception recall that changes the next lesson.
 - Nebius Token Factory or OpenAI-compatible vLLM proxy path.
 - Receipt download, schema, secret scan, and deterministic fixtures.
+- A three-slide submission deck with the demo video embedded natively: `pitch/slides.html` (team, product, video — 0:43, under the 2:00 cap).
+- A take-home learning path: the Touchdown Labs Mac MLX KV-cache post mirrored at `blog/qwen36-openclaw-mlx-macbook-kv-cache.html`, tied to the skill, challenge, and receipt schema in `docs/token-optimization.md`.
 
 ## Current evidence state
 

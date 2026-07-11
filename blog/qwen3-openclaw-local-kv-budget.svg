@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Qwen3.6 local OpenClaw and Hermes KV cache budget</title>
+  <desc id="desc">A chart showing 16GB and 32GB-plus MacBook Pro model choices for Gemma 4 and Qwen3.6 MLX KV-cache learning loops.</desc>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <rect x="48" y="48" width="1504" height="804" fill="#f7f7f7" stroke="#0a0a0a" stroke-width="2"/>
+
+  <text x="86" y="112" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#777777">LOCAL OPENCLAW + HERMES / GEMMA 4 + QWEN3.6 / MLX</text>
+  <text x="86" y="174" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="300" fill="#0a0a0a">KV cache turns Mac memory into a working-set lesson</text>
+  <text x="86" y="218" font-family="Inter, Arial, sans-serif" font-size="24" fill="#555555">16GB uses Gemma 4 E4B to mimic 50 turns. Qwen3.6 35B-A3B is the 32GB-plus budget lesson.</text>
+
+  <g transform="translate(86 286)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#999999">32GB MACBOOK PRO MEMORY BUDGET</text>
+    <rect x="0" y="36" width="910" height="76" fill="#ffffff" stroke="#d8d8d8"/>
+    <rect x="0" y="36" width="580" height="76" fill="#0a0a0a"/>
+    <rect x="580" y="36" width="170" height="76" fill="#555555"/>
+    <rect x="750" y="36" width="160" height="76" fill="#cfcfcf"/>
+    <text x="24" y="83" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">20.4GB Qwen3.6 4-bit MLX weights</text>
+    <text x="600" y="83" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff">OS + browser</text>
+    <text x="768" y="83" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="800" fill="#0a0a0a">KV + tools</text>
+
+    <text x="0" y="154" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#999999">16GB REGULAR M5 REALITY CHECK</text>
+    <rect x="0" y="178" width="910" height="64" fill="#ffffff" stroke="#d8d8d8"/>
+    <rect x="0" y="178" width="910" height="64" fill="#0a0a0a"/>
+    <text x="24" y="218" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" fill="#ffffff">Use Gemma 4 E4B 4-bit for 50-turn demos. Qwen3.6-27B is a tight comparison.</text>
+
+    <text x="0" y="292" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#999999">ILLUSTRATIVE FP16 KV GROWTH ON 32GB</text>
+
+    <text x="0" y="352" font-family="Inter, Arial, sans-serif" font-size="22" fill="#0a0a0a">Turn 5 / 8K context</text>
+    <rect x="260" y="326" width="910" height="42" fill="#ffffff" stroke="#d8d8d8"/>
+    <rect x="260" y="326" width="56" height="42" fill="#0066ff"/>
+    <text x="332" y="354" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">~0.8GB KV estimate: usually fine locally</text>
+
+    <text x="0" y="426" font-family="Inter, Arial, sans-serif" font-size="22" fill="#0a0a0a">Turn 30 / 32K context</text>
+    <rect x="260" y="400" width="910" height="42" fill="#ffffff" stroke="#d8d8d8"/>
+    <rect x="260" y="400" width="224" height="42" fill="#0066ff"/>
+    <text x="500" y="428" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">~3GB KV estimate: budget becomes real</text>
+
+    <text x="0" y="500" font-family="Inter, Arial, sans-serif" font-size="22" fill="#0a0a0a">Native long run / 262K</text>
+    <rect x="260" y="474" width="910" height="42" fill="#ffffff" stroke="#d8d8d8"/>
+    <rect x="260" y="474" width="910" height="42" fill="#0066ff"/>
+    <text x="270" y="502" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">too large for 32GB</text>
+  </g>
+
+  <g transform="translate(1110 294)">
+    <rect x="0" y="0" width="360" height="430" fill="#ffffff" stroke="#d8d8d8"/>
+    <text x="28" y="48" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#999999">MODEL PATHS</text>
+    <text x="28" y="94" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="300" fill="#0a0a0a">16GB M5</text>
+    <text x="28" y="132" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">Gemma 4 E4B 4-bit</text>
+    <text x="28" y="164" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">~5.22GB artifact</text>
+    <text x="28" y="196" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">50-turn state demo</text>
+    <line x1="28" y1="226" x2="332" y2="226" stroke="#d8d8d8"/>
+    <text x="28" y="270" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="300" fill="#0a0a0a">32GB-plus</text>
+    <text x="28" y="308" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">Qwen3.6-35B-A3B</text>
+    <text x="28" y="340" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">~20.4GB artifact</text>
+    <text x="28" y="372" font-family="Inter, Arial, sans-serif" font-size="20" fill="#555555">constrained teaching run</text>
+  </g>
+
+  <line x1="86" y1="800" x2="1514" y2="800" stroke="#0a0a0a" stroke-width="2"/>
+  <text x="86" y="836" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="300" fill="#0a0a0a">Local proof target:</text>
+  <text x="272" y="836" font-family="Inter, Arial, sans-serif" font-size="22" fill="#555555">log context tokens, memory pressure, TTFT proxy, and reuse shape.</text>
+</svg>

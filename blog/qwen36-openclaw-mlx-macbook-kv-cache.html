@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX | Touchdown Labs</title>
+  <meta name="description" content="A practical Touchdown Labs guide for using Mac MLX, Gemma 4, Qwen3.6 comparisons, and OpenClaw or Hermes-style agent loops on a 16GB M5 MacBook Pro to mimic KV-cache observability before moving to LMCache, vLLM, and SGLang.">
+  <meta name="author" content="William Chen">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <link rel="canonical" href="https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache.html">
+  <link rel="icon" href="https://touchdown-labs.com/logo.svg">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX">
+  <meta property="og:description" content="A local MacBook Pro setup guide for making KV-cache pressure and LMCache/vLLM/SGLang-style observability visible with MLX, Gemma 4, Qwen3.6 comparisons, OpenClaw, and Hermes.">
+  <meta property="og:url" content="https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache.html">
+  <meta property="og:site_name" content="Touchdown Labs">
+  <meta property="og:image" content="https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache-og.png">
+  <meta property="og:image:alt" content="Qwen3.6 OpenClaw local KV cache budget chart">
+  <meta property="article:published_time" content="2026-05-13T00:00:00-07:00">
+  <meta property="article:modified_time" content="2026-05-13T18:00:00-07:00">
+  <meta property="article:author" content="William Chen">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX">
+  <meta name="twitter:description" content="Use a 16GB M5 MacBook Pro, MLX, Gemma 4, Qwen3.6 comparisons, and OpenClaw or Hermes-style loops to mimic KV-cache observability.">
+  <meta name="twitter:image" content="https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache-og.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache.html#article",
+        "headline": "Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX",
+        "description": "A practical Touchdown Labs guide for using Mac MLX, Gemma 4, Qwen3.6 comparisons, and OpenClaw or Hermes-style agent loops on a 16GB M5 MacBook Pro to mimic KV-cache observability before moving to LMCache, vLLM, and SGLang.",
+        "image": "https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache-og.png",
+        "datePublished": "2026-05-13T00:00:00-07:00",
+        "dateModified": "2026-05-13T18:00:00-07:00",
+        "author": {"@id": "https://touchdown-labs.com/#william-chen"},
+        "publisher": {"@id": "https://touchdown-labs.com/#organization"},
+        "mainEntityOfPage": {"@id": "https://touchdown-labs.com/blog/qwen36-openclaw-mlx-macbook-kv-cache.html"},
+        "isPartOf": {"@type": "Blog", "name": "Touchdown Labs Blog", "url": "https://touchdown-labs.com/blog/"},
+        "inLanguage": "en-US",
+        "wordCount": 3400,
+        "keywords": ["KV cache", "Mac MLX", "Gemma 4 E4B", "Qwen 3.6 27B", "Qwen 3.6-35B-A3B", "Kimi K2.6", "OpenClaw", "Hermes Agent", "LMCache MP", "vLLM", "Mooncake", "SGLang", "NVIDIA Dynamo", "M5 MacBook Pro", "Apple Silicon unified memory", "GB200 NVL72", "GB300 NVL72", "agentic inference", "prefill decode disaggregation"],
+        "about": [
+          {"@type": "Thing", "name": "KV cache"},
+          {"@type": "Thing", "name": "Mac MLX"},
+          {"@type": "Thing", "name": "Gemma 4 E4B"},
+          {"@type": "Thing", "name": "Qwen 3.6"},
+          {"@type": "Thing", "name": "Kimi K2.6"},
+          {"@type": "Thing", "name": "Apple Silicon unified memory"},
+          {"@type": "Thing", "name": "Agentic inference"}
+        ],
+        "citation": [
+          {"@type": "CreativeWork", "name": "MLX community: Gemma 4 E4B IT 4-bit quant", "url": "https://huggingface.co/mlx-community/gemma-4-e4b-it-4bit"},
+          {"@type": "CreativeWork", "name": "MLX community: Qwen 3.6-35B-A3B 4-bit quant", "url": "https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit"},
+          {"@type": "CreativeWork", "name": "Open4bits: Qwen 3.6 27B MLX 4-bit quant", "url": "https://huggingface.co/Open4bits/Qwen3.6-27B-mlx-4Bit"},
+          {"@type": "CreativeWork", "name": "Touchdown Labs: mac-mlx-kv-cache-stress-demo", "url": "https://github.com/Touchdown-Labs/mac-mlx-kv-cache-stress-demo"},
+          {"@type": "CreativeWork", "name": "OpenClaw agent repository", "url": "https://github.com/openclaw/openclaw"},
+          {"@type": "CreativeWork", "name": "NousResearch Hermes Agent", "url": "https://github.com/NousResearch/hermes-agent"},
+          {"@type": "CreativeWork", "name": "MLX LM repository (Apple)", "url": "https://github.com/ml-explore/mlx-lm"},
+          {"@type": "CreativeWork", "name": "Apple MacBook Pro 14-inch M5 specifications", "url": "https://support.apple.com/en-la/125405"},
+          {"@type": "CreativeWork", "name": "Apple MacBook Pro 14-inch M5 Pro / M5 Max specifications", "url": "https://support.apple.com/en-gw/126318"},
+          {"@type": "CreativeWork", "name": "NVIDIA DGX B200 specifications", "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/"},
+          {"@type": "CreativeWork", "name": "NVIDIA GB200 NVL72 specifications", "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/"}
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://touchdown-labs.com/#william-chen",
+        "name": "William Chen",
+        "givenName": "William",
+        "familyName": "Chen",
+        "jobTitle": "CEO of Touchdown Labs",
+        "worksFor": {"@id": "https://touchdown-labs.com/#organization"},
+        "url": "https://touchdown-labs.com/",
+        "sameAs": [
+          "https://www.linkedin.com/in/william-chensj/",
+          "https://github.com/OCWC22",
+          "https://x.com/solidwillity"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://touchdown-labs.com/#organization",
+        "name": "Touchdown Labs",
+        "url": "https://touchdown-labs.com/",
+        "logo": {"@type": "ImageObject", "url": "https://touchdown-labs.com/logo.svg"},
+        "sameAs": ["https://github.com/Touchdown-Labs"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://touchdown-labs.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://touchdown-labs.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop with Mac MLX"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can a 16GB M5 MacBook Pro actually run a 50-turn agent with Gemma 4 E4B?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, because the 4-bit Gemma 4 E4B artifact is roughly 5.22GB. After macOS, browser, and the MLX runtime, you have enough headroom for 50 turns of repeated OpenClaw-style state. The verified smoke run on a 16GB M5 used 5.807GB peak memory on a 285-token prompt and generated 32 tokens at about 39 tokens per second."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use Gemma 4 E4B instead of Qwen 3.6 27B on 16GB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Qwen 3.6 27B 4-bit fits in 16GB but leaves almost no room for repeated agent state. The point of the 50-turn loop is to study what happens when state accumulates — you need free memory to actually accumulate it. Gemma 4 E4B's smaller artifact preserves that headroom; Qwen 3.6 27B turns the same loop into a weight-pressure demo instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this Mac MLX setup prove that LMCache MP, vLLM x Mooncake, or SGLang will help my production stack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The local CSV mimics the columns those systems expose, but it does not run them. The proof for LMCache MP requires lmcache_mp.lookup_requested_tokens, lookup_hit_tokens, and TTFT before-and-after on real GPUs. The Mac loop is a teaching surface; production claims need production counters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which model do I use on a 32GB-plus Mac?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Qwen 3.6-35B-A3B 4-bit (about 20.4GB artifact). It teaches active-parameter versus total-parameter accounting on a Mac you can actually own. The model still pressures memory once OpenClaw-style state accumulates, which is exactly the budget lesson the post argues for. For larger context or production-scale traces, switch to GB200/GB300."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Kimi K2.6 run on a Mac?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Kimi K2.6 is a 1T-parameter MoE model designed for GB200/GB300 NVL72-class hardware. The post uses it as the production analogy: fast Blackwell decode does not solve repeated prefill, so optimization shifts to routing, distributed KV pools (Mooncake), and cache-aware transfer (NVIDIA Dynamo NIXL). Use the GB200 proxy workload to study the trace shape locally."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the post say the local MLX columns are proxies instead of real metrics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple unified memory means the CPU and GPU share one physical pool, so there is no GPU HBM versus host DRAM boundary to measure. The L0/L1/L2 columns in the CSV are estimates of what those tiers would expose on a real serving stack, not direct readings. The summary JSON marks the run with observability_mimic: true to keep the discipline visible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the right next step after the synthetic loop works?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Run openclaw onboard or hermes setup, point them at a local OpenAI-compatible MLX gateway, and replace the synthetic prompts with a real marketing or coding agent trace. Compare a stable prompt layout against one that moves the same docs and tool outputs around. That tells you whether prefix reuse is enough or whether you need non-prefix reuse, routing, host cache, or distributed KV."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{--black:#0A0A0A;--white:#FFFFFF;--gray-200:#E5E5E5;--gray-400:#999999;--gray-500:#777777}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;background:#fff;color:var(--black);-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+    /* canonical TL nav (matches homepage) */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200)}
+    .nav-inner{max-width:1400px;margin:0 auto;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .nav-logo{font-weight:700;font-size:1.05rem;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:-0.3px}
+    .nav-mark{width:30px;height:30px;border:1.5px solid var(--black);display:grid;place-items:center;background:var(--black)}
+    .nav-mark span{color:var(--white);font-size:0.72rem;font-weight:800;line-height:1;letter-spacing:-0.4px}
+    .nav-links{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{text-decoration:none;color:var(--gray-500);font-size:0.85rem;font-weight:500;transition:color 0.2s;letter-spacing:-0.2px}
+    .nav-links a:hover{color:var(--black)}
+    .nav-cta{color:var(--black) !important;border:1.5px solid var(--black);padding:6px 18px;font-weight:600 !important;transition:all 0.2s !important}
+    .nav-cta:hover{background:var(--black);color:var(--white) !important}
+    header{padding:84px 3rem 24px;max-width:1400px;margin:0 auto}
+    .eyebrow{color:#999;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;font-size:.75rem}
+    h1{font-size:clamp(2.3rem,5.6vw,4.5rem);font-weight:300;letter-spacing:-2px;line-height:1.05;margin:18px 0 0}
+    h1 strong{font-weight:300;color:#999}
+    .dek{margin-top:18px;font-size:1.1rem;color:#777;line-height:1.8;max-width:880px}
+    .meta{margin-top:16px;color:#777;font-size:.92rem;display:flex;gap:8px;flex-wrap:wrap}
+    .meta a{border-bottom:1px solid #ccc;font-weight:600}
+    main{max-width:1400px;margin:0 auto;padding:0 3rem 52px}
+    h2{margin-top:42px;font-size:1.9rem;font-weight:300;letter-spacing:-1px}
+    p{margin-top:12px;color:#777;line-height:1.9;font-size:1.02rem;max-width:840px}
+    ul,ol{margin:14px 0 0 22px;color:#777;line-height:1.85;max-width:840px}
+    li{margin-top:8px}
+    strong{color:#0a0a0a}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92em;color:#0a0a0a}
+    pre{margin-top:16px;padding:14px;background:#0a0a0a;color:#fff;overflow:auto;font-size:.85rem;line-height:1.7;max-width:960px}
+    pre code{color:#fff}
+    blockquote{margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid #0a0a0a;max-width:820px}
+    blockquote p{margin:0;color:#0a0a0a;font-size:1.08rem;line-height:1.75}
+    .context-box{margin:24px 0;padding:20px;border:1px solid #e5e5e5;background:#f7f7f7;max-width:840px}
+    .context-box h2{margin-top:0}
+    .hero-figure{margin:30px 0 12px;border:1px solid #e5e5e5;background:#f7f7f7;padding:18px;max-width:1080px}
+    figure{margin:0;border:1px solid #e5e5e5;background:#fff;padding:16px}
+    figure img{display:block;width:100%;height:auto;background:#fff}
+    figcaption{margin-top:12px;color:#777;font-size:.9rem;line-height:1.6}
+    .chart-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;color:#999;font-size:.75rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+    .chart-label span:last-child{color:#0a0a0a}
+    .source-list a{border-bottom:1px solid #ccc;color:#0a0a0a;font-weight:600}
+    .spec-table{width:100%;max-width:1040px;border-collapse:collapse;margin-top:18px;font-size:.95rem}
+    .spec-table th,.spec-table td{border:1px solid #e5e5e5;padding:12px 14px;text-align:left;vertical-align:top;line-height:1.55}
+    .spec-table th{background:#f7f7f7;color:#0a0a0a;font-weight:800}
+    .spec-table td{color:#666}
+    .spec-table strong{display:block;margin-bottom:4px}
+    footer{border-top:1px solid var(--gray-200);padding:24px 3rem;max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--gray-500);font-size:.85rem}
+    @media(max-width:900px){
+      .nav-extra{display:none}
+      .nav-links{gap:1rem}
+      .nav-inner{padding:0 1.5rem}
+      header,main,footer{padding-left:1.5rem;padding-right:1.5rem}
+      h1{letter-spacing:-1.5px}
+      .hero-figure,figure{padding:10px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://touchdown-labs.com/" class="nav-logo">
+      <div class="nav-mark"><span>TL</span></div>
+      Touchdown Labs
+    </a>
+    <div class="nav-links">
+      <a href="https://touchdown-labs.com/">Home</a>
+      <a href="https://touchdown-labs.com/blog/">Blog</a>
+      <a href="https://touchdown-labs.com/careers/">Careers</a>
+      <a href="https://touchdown-labs.com/inferguard/">InferGuard</a>
+      <a href="mailto:info@touchdown-labs.com" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <p class="eyebrow">How-to / Local Inference</p>
+  <h1>Set Up a Local OpenClaw or Hermes KV-Cache Learning Loop <strong>with Mac MLX</strong></h1>
+  <p class="dek">
+    A step-by-step Mac MLX runbook for one specific problem: showing why model choice, quantization, context shape,
+    tool use, and hardware memory layout all change the right inference optimization. Start on a real 16GB M5 MacBook
+    Pro, then map the evidence to LMCache MP, vLLM/Mooncake, SGLang, P/D disaggregation, and larger Qwen3.6 or Kimi
+    K2.6 serving stacks.
+  </p>
+  <div class="meta">
+    <span>By <a href="mailto:info@touchdown-labs.com">William Chen</a>, CEO of Touchdown Labs</span>
+    <span>&middot;</span>
+    <time datetime="2026-05-13">May 13, 2026</time>
+  </div>
+</header>
+
+<main>
+  <div class="context-box">
+    <h2>The frame</h2>
+    <p>
+      There is no universal "best inference setup." The right optimization depends on the exact recipe: model
+      architecture, quantization, prompt length, tool-loop behavior, hardware memory layout, runtime cache design, and
+      what evidence you can actually collect.
+    </p>
+    <p>
+      Gemma 4 E4B on a 16GB M5 MacBook Pro, Qwen3.6-35B-A3B on a 32GB-plus Mac, Kimi K2.6 on GB200 or GB300, and a
+      50-turn OpenClaw marketing agent are not variants of the same benchmark. They are different systems problems.
+      The optimizer has to ask different questions for each one.
+    </p>
+  </div>
+
+  <blockquote><p><strong>Different models, quantizations, workloads, and hardware memory hierarchies require different optimization plans. That is the lesson.</strong></p></blockquote>
+
+  <div class="fit-grid">
+    <div class="fit-card">
+      <small>Local demo recipe</small>
+      <strong>Gemma 4 E4B + 16GB M5</strong>
+      <span>Small enough to leave room for 50 turns of repeated OpenClaw/Hermes state. Optimize for visibility into prompt growth and memory pressure.</span>
+    </div>
+    <div class="fit-card">
+      <small>Tight laptop comparison</small>
+      <strong>Qwen3.6 27B + 16GB M5</strong>
+      <span>Mostly teaches weight pressure. The model may load, but the agent workload can still run out of practical headroom.</span>
+    </div>
+    <div class="fit-card">
+      <small>Architecture lesson</small>
+      <strong>Qwen3.6-35B-A3B + 32GB-plus Mac</strong>
+      <span>Good for active-parameter versus total-parameter thinking. Still needs shorter prompts and careful memory accounting.</span>
+    </div>
+    <div class="fit-card">
+      <small>Production analogy</small>
+      <strong>Kimi K2.6 + GB200/GB300</strong>
+      <span>Fast decode does not solve repeated prefill. Optimize routing, distributed KV, transfer cost, and observability.</span>
+    </div>
+  </div>
+
+  <figure class="hero-figure">
+    <div class="chart-label"><span>Visual</span><span>Local recipe versus production memory hierarchy</span></div>
+    <img src="qwen3-openclaw-local-kv-budget.svg" alt="Mac MLX OpenClaw KV cache memory budget chart comparing 16GB and 32GB-plus local recipes">
+    <figcaption>
+      The local visualization is deliberately small: it shows why model weights, prompt buffers, KV state, browser
+      state, and tool output become one working-set problem on a Mac before you ever reach production-scale KV
+      routing.
+    </figcaption>
+  </figure>
+
+  <h2>Step 1: How do you name the exact inference recipe before debugging?</h2>
+  <p>
+    Write down six fields before you touch anything: model, quantization, workload, hardware, runtime, and claim.
+    "Run a local model" is not specific enough to debug. "Run Gemma 4 E4B 4-bit with a 50-turn OpenClaw-style loop on
+    a 16GB M5 MacBook Pro and record proxy L0/L1/L2 reuse columns" is. The four recipes below are concrete instances.
+  </p>
+  <table class="spec-table">
+    <thead>
+      <tr>
+        <th>Recipe</th>
+        <th>What changes technically</th>
+        <th>Optimization target</th>
+        <th>Do not claim</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gemma 4 E4B on 16GB M5</strong><code>mlx-community/gemma-4-e4b-it-4bit</code></td>
+        <td>Smaller 4-bit VLM artifact leaves room for OS, browser, prompt buffers, and repeated state.</td>
+        <td>Show the 50-turn KV/state lifecycle on the actual laptop.</td>
+        <td>Do not claim Qwen3.6 long-context performance, LMCache MP behavior, or vLLM/Mooncake behavior.</td>
+      </tr>
+      <tr>
+        <td><strong>Qwen3.6 27B on 16GB M5</strong><code>Open4bits/Qwen3.6-27B-mlx-4Bit</code></td>
+        <td>Weights dominate the 16GB budget before long-context tool state becomes comfortable.</td>
+        <td>Demonstrate why "model fits" is not the same as "agent workload fits."</td>
+        <td>Do not treat this as a comfortable 50-turn long-context laptop setup.</td>
+      </tr>
+      <tr>
+        <td><strong>Qwen3.6-35B-A3B on 32GB-plus</strong><code>mlx-community/Qwen3.6-35B-A3B-4bit</code></td>
+        <td>MoE-style active-parameter behavior changes compute shape, while the artifact still consumes local memory.</td>
+        <td>Teach active weights, total weights, context, and KV budget as separate line items.</td>
+        <td>Do not treat "model loads" as proof that long-context agent serving works.</td>
+      </tr>
+      <tr>
+        <td><strong>Kimi K2.6 on GB200/GB300</strong></td>
+        <td>Large context and fast Blackwell decode move the bottleneck toward repeated prefill, routing, and KV placement.</td>
+        <td>Measure distributed KV hits, transfer time, TTFT hit/miss, and cache-aware routing.</td>
+        <td>Do not use laptop proxy numbers as production latency or cost proof.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Step 2: What happens during one inference turn, end to end?</h2>
+  <p>
+    Every inference turn moves through five phases: weights load, prompt assembly, prefill, decode, and next-turn reuse.
+    Every optimization in this guide changes exactly one of those five phases. If you do not know which phase you are
+    changing, you are guessing. The fifth phase (next-turn reuse) is where 50-turn agents actually fail.
+  </p>
+  <ol>
+    <li><strong>Weights:</strong> load quantized model weights into the available memory system.</li>
+    <li><strong>Prompt assembly:</strong> combine system text, tool schemas, retrieved docs, browser summaries, previous turns, and the new user request.</li>
+    <li><strong>Prefill:</strong> run the model over the input tokens and create KV state.</li>
+    <li><strong>Decode:</strong> generate new tokens while repeatedly reading KV state.</li>
+    <li><strong>Next-turn reuse:</strong> decide whether old KV/state is reused from the right tier or recomputed.</li>
+  </ol>
+  <p>
+    That fifth phase is the lesson. A 50-turn OpenClaw or Hermes agent is mostly old state plus a small new delta. If
+    the stack cannot find the old state cheaply, it pays prefill again. The right fix might be a smaller model, more
+    unified memory, a stable prompt layout, LMCache MP, Mooncake, SGLang prefix structure, or P/D transfer tuning. It
+    depends on the recipe.
+  </p>
+
+  <h2>Step 3: How does Apple Silicon's memory hierarchy differ from datacenter GPUs?</h2>
+  <p>
+    Apple Silicon (M4/M5 family) gives the CPU and GPU one unified memory pool of 16-128GB at 153-614GB/s bandwidth.
+    NVIDIA datacenter systems separate GPU HBM (80-288GB at 3.35-8TB/s), host DRAM, NVLink/PCIe transfer, and remote
+    KV movement into distinct tiers. That hierarchy decides which optimization is even meaningful for your workload.
+  </p>
+  <figure class="hero-figure">
+    <div class="chart-label"><span>Visual</span><span>M5 unified memory versus GB200 disaggregated memory</span></div>
+    <img src="apple-m5-vs-gb200-memory-architecture.png" alt="Diagram comparing Apple M5 unified memory with NVIDIA GB200 disaggregated CPU and GPU memory architecture">
+    <figcaption>
+      This visual is a conceptual guide to the difference that matters for inference engineers: on Apple Silicon,
+      CPU and GPU share one physical memory pool; on GB200-class systems, CPU memory, GPU HBM, storage, and remote
+      movement are separate tiers. Use the sourced table below for exact specs and treat the diagram as a mental
+      model for why Mac MLX proxy columns are not the same thing as live LMCache, vLLM/Mooncake, SGLang, or P/D
+      transfer counters.
+    </figcaption>
+  </figure>
+  <table class="spec-table">
+    <thead>
+      <tr>
+        <th>Hardware</th>
+        <th>Memory layout</th>
+        <th>Optimization lesson</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>M5 MacBook Pro, 16GB</strong>10-core CPU, 10-core GPU, 153GB/s unified memory bandwidth.</td>
+        <td>One pool for macOS, model weights, KV state, browser, files, and tools.</td>
+        <td>Great for seeing working-set pressure. Bad for proving server offload behavior.</td>
+      </tr>
+      <tr>
+        <td><strong>M5 Pro / M5 Max</strong>307GB/s on M5 Pro; 460GB/s or 614GB/s on M5 Max.</td>
+        <td>Bigger unified-memory pool and more bandwidth, still one Apple Silicon memory system.</td>
+        <td>Better for Qwen3.6, VLMs, exo experiments, and real local agent iteration.</td>
+      </tr>
+      <tr>
+        <td><strong>M4 Pro / M4 Max</strong>273GB/s on M4 Pro; 410GB/s or 546GB/s on M4 Max.</td>
+        <td>Previous-generation unified memory. High-memory M4 Max remains very useful.</td>
+        <td>For local inference, memory capacity can matter more than the newer chip label.</td>
+      </tr>
+      <tr>
+        <td><strong>H100 / H200</strong>H100 SXM has 80GB HBM and 3.35TB/s bandwidth; H200 SXM has 141GB HBM3e and 4.8TB/s.</td>
+        <td>GPU HBM and host DRAM are separate tiers with explicit transfer paths.</td>
+        <td>Validate vLLM, SGLang, LMCache, batching, prefill, decode, and TTFT with live counters.</td>
+      </tr>
+      <tr>
+        <td><strong>B200 / GB200</strong>DGX B200 has 8 Blackwell GPUs and 1,440GB total HBM3e; GB200 NVL72 has 72 Blackwell GPUs and 13.4TB HBM3e.</td>
+        <td>Rack-scale CPU plus GPU memory hierarchy with NVLink, Grace CPU memory, Blackwell HBM, and remote movement.</td>
+        <td>Distributed KV, routing, P/D transfer, and locality dominate the engineering question.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Step 4: How do you install the public Mac MLX KV cache demo?</h2>
+  <p>
+    Clone <code>Touchdown-Labs/mac-mlx-kv-cache-stress-demo</code> and run one of its two verified paths: the local
+    Mac/MLX OpenClaw proxy (small workload, real M5 memory pressure) or the GB200/Kimi K2.6/OpenClaw-shaped proxy
+    (production trace shape, no real GPU needed). Both write a 50-turn CSV in seconds with no auth.
+  </p>
+  <pre><code>git clone https://github.com/Touchdown-Labs/mac-mlx-kv-cache-stress-demo.git
+cd mac-mlx-kv-cache-stress-demo
+
+# Local Mac/MLX OpenClaw proxy.
+uv run --python 3.11 --with psutil python -m kv_cache_stress_demo.run_loop
+
+# GB200/Kimi K2.6/OpenClaw-shaped proxy.
+uv run --python 3.11 --with psutil python -m kv_cache_stress_demo.run_loop \
+  --workload kimi-k26-gb200-openclaw \
+  --out runs/kimi_k26_gb200_openclaw_proxy.csv</code></pre>
+  <p>
+    Verified locally: the Mac/MLX proxy wrote a 50-turn CSV and grew from 166 to 579 estimated prompt tokens. The
+    GB200/Kimi/OpenClaw proxy wrote a 50-turn CSV and grew from 12,166 to 122,437 estimated prompt tokens with a
+    99.81% repeated-state share. These are workload-shape proxies, not production benchmarks.
+  </p>
+
+  <h2>Step 5: How do you install the Claude Code skill for this loop?</h2>
+  <p>
+    Clone the Touchdown Labs site repo and copy <code>skills/qwen36-mac-kv-loop</code> into <code>~/.claude/skills/</code>.
+    The skill makes Claude Code provision a local experiment directory with fixtures, a smoke image, a CSV runner, and
+    LMCache/vLLM/SGLang-style proxy observability columns on demand. Activates next session.
+  </p>
+  <pre><code>git clone https://github.com/OCWC22/Touchdown-Labs-Site.git
+cd Touchdown-Labs-Site
+mkdir -p ~/.claude/skills
+cp -R skills/qwen36-mac-kv-loop ~/.claude/skills/</code></pre>
+
+  <h2>Step 6: How do you run the 16GB max-MLX observability profile?</h2>
+  <p>
+    Run the skill's provisioner with <code>--profile 16gb-max-mlx-observability</code> against a target directory,
+    then execute <code>run_openclaw_loop.py</code>. This is the recommended path for an actual 16GB M5 MacBook Pro.
+    It uses Gemma 4 E4B (5.22GB artifact) so the model leaves enough memory to study repeated state across 50 turns.
+  </p>
+  <pre><code>python ~/.claude/skills/qwen36-mac-kv-loop/scripts/provision_qwen36_kv_loop.py \
+  --target ~/mac-mlx-kv-observability \
+  --profile 16gb-max-mlx-observability
+
+cd ~/mac-mlx-kv-observability
+uv run --python 3.11 --with psutil python run_openclaw_loop.py
+
+cat openclaw_kv_pressure.summary.json</code></pre>
+  <p>
+    On the verified local run, this profile wrote 51 CSV lines including the header. The prompt-token estimate grew
+    from 238 on turn 1 to 2,790 on turn 50. The summary JSON marks the run as <code>observability_mimic: true</code>
+    and warns that these are proxy columns, not live LMCache, vLLM, SGLang, MLX, or Dynamo counters.
+  </p>
+
+  <h2>Step 7: Which observability columns matter in the MLX KV cache CSV?</h2>
+  <p>
+    Open <code>openclaw_kv_pressure.csv</code> and read seven columns that name the production concepts: vLLM L0
+    prefix reuse, LMCache MP-style L1 reuse, remote/L2 reuse, lookup requested vs hit tokens (the hit-rate ratio),
+    recompute tokens, and a P/D transfer-time proxy. Each column is a teaching surface, not a live production counter.
+  </p>
+  <ul>
+    <li><code>vllm_l0_prefix_hit_tokens_est</code>: local proxy for engine-owned prefix reuse.</li>
+    <li><code>lmcache_mp_l1_hit_tokens_est</code>: local proxy for shared host-side KV reuse.</li>
+    <li><code>remote_or_l2_hit_tokens_est</code>: local proxy for remote or lower-tier reuse.</li>
+    <li><code>lookup_requested_tokens_est</code> and <code>lookup_hit_tokens_est</code>: the numerator and denominator you need before claiming hit rate.</li>
+    <li><code>recompute_tokens_est</code>: the state the system failed to reuse in the proxy model.</li>
+    <li><code>pd_transfer_ms_proxy</code>: a teaching field for prefill/decode transfer tradeoffs.</li>
+  </ul>
+  <p>
+    The important warning is in the CSV too: Apple unified memory means CPU and GPU share one pool. This mimics
+    offload telemetry, but it is not LMCache MP, RDMA, Mooncake, SGLang, or Dynamo proof.
+  </p>
+
+  <h2>Step 8: How do you smoke-test Gemma 4 E4B and Qwen 3.6 with mlx-vlm?</h2>
+  <p>
+    Use Python 3.11 through <code>uv</code> to install <code>mlx-vlm</code> and <code>mlx-lm</code>, generate a tiny
+    32×32 PPM image, then call the generator on each model with a one-sentence prompt. On the verified M5 MacBook Pro,
+    system Python 3.9 installed an older <code>mlx-vlm</code> that downloaded Gemma 4 but failed with
+    <code>Model type gemma4 not supported</code>. Use 3.11.
+  </p>
+  <pre><code># Create a tiny image for VLM smoke tests.
+python - &lt;&lt;'PY'
+from pathlib import Path
+pixels = " ".join(["255 255 255"] * (32 * 32))
+Path("smoke.ppm").write_text(f"P3\n32 32\n255\n{pixels}\n", encoding="ascii")
+PY
+
+# 16GB M5 default.
+uv run --python 3.11 --with mlx-vlm --with mlx-lm --with psutil \
+  python -m mlx_vlm generate \
+  --model mlx-community/gemma-4-e4b-it-4bit \
+  --max-tokens 128 \
+  --temperature 0.0 \
+  --prompt "In one sentence, explain why a 50-turn tool agent stresses KV cache." \
+  --image smoke.ppm
+
+# Tight 16GB Qwen comparison.
+mlx_lm.generate \
+  --model Open4bits/Qwen3.6-27B-mlx-4Bit \
+  --max-tokens 96 \
+  --prompt "In one sentence, explain why repeated prefill wastes inference compute."
+
+# 32GB-plus Qwen3.6-35B-A3B path.
+uv run --python 3.11 --with mlx-vlm --with mlx-lm --with psutil \
+  python -m mlx_vlm generate \
+  --model mlx-community/Qwen3.6-35B-A3B-4bit \
+  --max-tokens 128 \
+  --temperature 0.0 \
+  --prompt "In one sentence, explain why repeated prefill wastes inference compute." \
+  --image smoke.ppm</code></pre>
+  <p>
+    Verified Gemma 4 E4B smoke result on the actual 16GB M5 MacBook Pro: 285 prompt tokens, 32 generated tokens, about
+    39 generated tokens/sec, and 5.807GB peak memory.
+  </p>
+
+  <h2>Step 9: How do these four model recipes compare for Mac MLX inference?</h2>
+  <p>
+    Each recipe teaches a different optimization lesson. Gemma 4 E4B 4-bit is small enough that a 16GB M5 has memory
+    left over to demonstrate the 50-turn state problem. Qwen 3.6 27B 4-bit shows weight pressure on 16GB. Qwen
+    3.6-35B-A3B 4-bit teaches active-vs-total parameter accounting on 32GB+ machines. Kimi K2.6 needs a real GPU.
+  </p>
+  <table class="spec-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Why it behaves differently</th>
+        <th>Optimization implication</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gemma 4 E4B 4-bit</strong></td>
+        <td>The artifact is small enough that the 16GB M5 can spend memory on repeated state instead of only weights.</td>
+        <td>Best for demonstrating the 50-turn state problem locally.</td>
+      </tr>
+      <tr>
+        <td><strong>Qwen3.6 27B 4-bit</strong></td>
+        <td>The artifact is close to the 16GB machine's practical budget once OS, browser, prompt buffers, and KV are included.</td>
+        <td>Use as a tight memory warning, not a comfortable loop target.</td>
+      </tr>
+      <tr>
+        <td><strong>Qwen3.6-35B-A3B 4-bit</strong></td>
+        <td>The active-parameter pattern helps teach architecture, but the total artifact still pressures local memory.</td>
+        <td>Use on 32GB-plus machines to teach "model fits" versus "agent workload fits."</td>
+      </tr>
+      <tr>
+        <td><strong>Kimi K2.6 / GB200-class serving</strong></td>
+        <td>The production problem is not only model size. It is long context, repeated prefill, routing, distributed KV, and transfer.</td>
+        <td>Use engine metrics, not laptop proxy numbers, before making cost or latency claims.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Step 10: How do you map the local proxy CSV to LMCache, vLLM, SGLang, and Dynamo metrics?</h2>
+  <p>
+    The local CSV columns are placeholders; production replaces each with real telemetry. LMCache MP exposes
+    <code>lmcache_mp.lookup_requested_tokens</code> and <code>lookup_hit_tokens</code>. vLLM × Mooncake reports
+    remote KV blocks found and transfer time. SGLang reports radix/prefix hit shape and matched prefix length.
+    NVIDIA Dynamo NIXL reports KV transfer time and prefill/decode separation duration.
+  </p>
+  <ul>
+    <li><strong>LMCache MP:</strong> replace proxy L1 columns with <code>lmcache_mp.lookup_requested_tokens</code>, <code>lmcache_mp.lookup_hit_tokens</code>, retrieve latency, store latency, and L1/L2 throughput.</li>
+    <li><strong>vLLM/Mooncake:</strong> replace remote/L2 proxy columns with prompt-block hashes, remote KV blocks found, transfer time, worker placement, and TTFT hit versus miss.</li>
+    <li><strong>SGLang:</strong> replace prefix-shape notes with radix/prefix hit shape, matched prefix length, batching settings, and TTFT deltas.</li>
+    <li><strong>P/D disaggregation:</strong> replace <code>pd_transfer_ms_proxy</code> with real KV or embedding transfer time, scheduler blocking, prefill duration, and decode duration.</li>
+  </ul>
+
+  <h2>Step 11: How do you run the same loop through OpenClaw and Hermes Agent?</h2>
+  <p>
+    OpenClaw and Hermes are real agent shells that produce the workload shape — tools, browser output, memory,
+    retrieved docs, feedback, rewrites, session state. After the synthetic loop works, run <code>openclaw onboard</code>
+    or <code>hermes setup</code> against a local OpenAI-compatible MLX gateway and record the same prompt-token,
+    repeated-state, and TTFT-proxy columns. That replaces a fixture with a real agent trace.
+  </p>
+  <pre><code># OpenClaw documented path.
+openclaw onboard
+openclaw agent --message "Run one marketing-agent turn. Keep reusable docs in the prompt and report estimated prompt tokens." --thinking high
+
+# Marketing Claw workload.
+git clone https://github.com/zachmael/marketing-claw
+cd marketing-claw
+node setup.mjs
+
+# Verify a local OpenAI-compatible MLX gateway before pointing an agent at it.
+curl http://localhost:8000/v1/models</code></pre>
+  <pre><code># Hermes documented path.
+hermes setup
+hermes model
+hermes doctor
+hermes</code></pre>
+  <p>
+    For Hermes, preserve the session and compare fresh-session, resumed-session, and bad-locality runs. For OpenClaw,
+    compare a stable prompt layout with a layout that moves the same retrieved docs and tool outputs around. The
+    result should tell you whether prefix reuse is enough or whether you need non-prefix reuse, routing, host cache,
+    distributed KV, or a different model.
+  </p>
+
+  <h2>Step 12: What can a Mac MLX setup actually prove versus what does production require?</h2>
+  <p>
+    Mac MLX can prove that repeated agent state grows across 50 turns, that Gemma 4 E4B leaves enough 16GB headroom to
+    study it, and that prompt layout changes the proxy reuse columns. Mac MLX cannot prove LMCache MP TTFT, vLLM ×
+    Mooncake cross-worker hit rates, or SGLang radix-tree lift. Each of those needs the real engine's counters.
+  </p>
+  <table class="spec-table">
+    <thead>
+      <tr>
+        <th>Claim</th>
+        <th>Mac MLX can show</th>
+        <th>Production proof required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Repeated agent state grows across turns.</strong></td>
+        <td>Yes. The CSV records prompt estimates, repeated-state shape, memory pressure, and proxy reuse.</td>
+        <td>Exact tokenizer counts, engine traces, and request-level spans.</td>
+      </tr>
+      <tr>
+        <td><strong>Gemma 4 is the right 16GB teaching model.</strong></td>
+        <td>Yes. It leaves enough memory for the 50-turn loop on the verified 16GB M5 path.</td>
+        <td>Repeat the smoke test on the target Mac and record peak memory.</td>
+      </tr>
+      <tr>
+        <td><strong>Qwen3.6 fits the agent workload.</strong></td>
+        <td>Only partially. The 27B and 35B paths teach budget pressure.</td>
+        <td>Run the actual prompt length, tools, browser state, and model on the target machine.</td>
+      </tr>
+      <tr>
+        <td><strong>LMCache MP improves TTFT.</strong></td>
+        <td>No. The local runner only mimics L1 hit columns.</td>
+        <td>LMCache MP counters, vLLM connector config, and TTFT hit/miss evidence.</td>
+      </tr>
+      <tr>
+        <td><strong>vLLM/Mooncake avoids cross-worker misses.</strong></td>
+        <td>No. The local runner only names the remote/L2 concept.</td>
+        <td>Remote KV hits, transfer time, worker selection, and before/after latency.</td>
+      </tr>
+      <tr>
+        <td><strong>SGLang prefix/radix structure helps.</strong></td>
+        <td>Partially. Bad-locality prompts can show why shape matters.</td>
+        <td>SGLang prefix/radix metrics and TTFT deltas on the real workload.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>What's the takeaway for production inference engineers?</h2>
+  <p>
+    The Mac MLX failure mode is the production failure mode at smaller scale: reusable state has to be placed in the
+    right tier, found cheaply on the next turn, transferred without blocking decode, and measured with hit-vs-miss
+    counters per tier. A 16GB M5 with Gemma 4 E4B teaches this in 50 turns; a GB200 NVL72 with Kimi K2.6 teaches it
+    at production scale. The optimization recipe differs; the failure mode is the same shape.
+  </p>
+  <p>
+    The bigger lesson is the frame this article started with. Different models and workloads on different hardware are
+    different recipes. Gemma 4 E4B on 16GB M5, Qwen3.6-35B-A3B on a larger Mac, Kimi K2.6 on GB200 or GB300, and a
+    long-running OpenClaw marketing agent require different optimization plans. Sometimes the answer is a smaller
+    model. Sometimes it is more unified memory. Sometimes it is LMCache MP, vLLM/Mooncake, SGLang prefix structure,
+    P/D disaggregation, cache-aware routing, or better observability.
+  </p>
+  <blockquote><p><strong>That specificity is why Touchdown Labs exists: the useful answer depends on the exact model, workload, hardware, runtime, and evidence path in front of you.</strong></p></blockquote>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Can a 16GB M5 MacBook Pro actually run a 50-turn agent with Gemma 4 E4B?</h3>
+  <p>
+    Yes, because the 4-bit Gemma 4 E4B artifact is roughly 5.22GB. After macOS, browser, and the MLX runtime, you have
+    enough headroom for 50 turns of repeated OpenClaw-style state. The verified smoke run on a 16GB M5 used 5.807GB
+    peak memory on a 285-token prompt and generated 32 tokens at about 39 tokens per second.
+  </p>
+
+  <h3>Why use Gemma 4 E4B instead of Qwen 3.6 27B on 16GB?</h3>
+  <p>
+    Qwen 3.6 27B 4-bit fits in 16GB but leaves almost no room for repeated agent state. The point of the 50-turn loop
+    is to study what happens when state accumulates — you need free memory to actually accumulate it. Gemma 4 E4B's
+    smaller artifact preserves that headroom; Qwen 3.6 27B turns the same loop into a weight-pressure demo instead.
+  </p>
+
+  <h3>Does this Mac MLX setup prove that LMCache MP, vLLM × Mooncake, or SGLang will help my production stack?</h3>
+  <p>
+    No. The local CSV mimics the columns those systems expose, but it does not run them. The proof for LMCache MP
+    requires <code>lmcache_mp.lookup_requested_tokens</code>, <code>lookup_hit_tokens</code>, and TTFT before-and-after
+    on real GPUs. The Mac loop is a teaching surface; production claims need production counters.
+  </p>
+
+  <h3>Which model do I use on a 32GB-plus Mac?</h3>
+  <p>
+    Qwen 3.6-35B-A3B 4-bit (about 20.4GB artifact). It teaches active-parameter versus total-parameter accounting on
+    a Mac you can actually own. The model still pressures memory once OpenClaw-style state accumulates, which is
+    exactly the budget lesson the post argues for. For larger context or production-scale traces, switch to GB200/GB300.
+  </p>
+
+  <h3>Does Kimi K2.6 run on a Mac?</h3>
+  <p>
+    No. Kimi K2.6 is a 1T-parameter MoE model designed for GB200/GB300 NVL72-class hardware. The post uses it as the
+    production analogy: fast Blackwell decode does not solve repeated prefill, so optimization shifts to routing,
+    distributed KV pools (Mooncake), and cache-aware transfer (NVIDIA Dynamo NIXL). Use the GB200 proxy workload to
+    study the trace shape locally.
+  </p>
+
+  <h3>Why does the post say the local MLX columns are "proxies" instead of real metrics?</h3>
+  <p>
+    Apple unified memory means the CPU and GPU share one physical pool, so there is no GPU HBM versus host DRAM
+    boundary to measure. The L0/L1/L2 columns in the CSV are estimates of what those tiers would expose on a real
+    serving stack, not direct readings. The summary JSON marks the run with <code>observability_mimic: true</code> to
+    keep the discipline visible.
+  </p>
+
+  <h3>What's the right next step after the synthetic loop works?</h3>
+  <p>
+    Run <code>openclaw onboard</code> or <code>hermes setup</code>, point them at a local OpenAI-compatible MLX
+    gateway, and replace the synthetic prompts with a real marketing or coding agent trace. Compare a stable prompt
+    layout against one that moves the same docs and tool outputs around. That tells you whether prefix reuse is enough
+    or whether you need non-prefix reuse, routing, host cache, or distributed KV.
+  </p>
+
+  <div class="context-box source-list">
+    <h2>Sources and repos</h2>
+    <ul>
+      <li><a href="https://github.com/QwenLM/Qwen3.6" target="_blank" rel="noopener">Qwen3.6 repository</a></li>
+      <li><a href="https://github.com/Touchdown-Labs/mac-mlx-kv-cache-stress-demo" target="_blank" rel="noopener">Touchdown Labs mac-mlx-kv-cache-stress-demo repository</a></li>
+      <li><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" target="_blank" rel="noopener">Qwen3.6-35B-A3B model card</a></li>
+      <li><a href="https://huggingface.co/mlx-community/Qwen3.6-35B-A3B-4bit" target="_blank" rel="noopener">MLX community Qwen3.6-35B-A3B 4-bit quant</a></li>
+      <li><a href="https://huggingface.co/Open4bits/Qwen3.6-27B-mlx-4Bit" target="_blank" rel="noopener">Open4bits Qwen3.6-27B MLX 4-bit quant</a></li>
+      <li><a href="https://huggingface.co/coderavi/Qwen3.6-27B-mlx-4Bit" target="_blank" rel="noopener">coderavi Qwen3.6-27B MLX 4-bit quant</a></li>
+      <li><a href="https://huggingface.co/mlx-community/gemma-4-e4b-it-4bit" target="_blank" rel="noopener">MLX community Gemma 4 E4B IT 4-bit quant</a></li>
+      <li><a href="https://ml-explore.github.io/mlx/build/html/usage/unified_memory.html" target="_blank" rel="noopener">MLX unified memory docs</a></li>
+      <li><a href="https://github.com/ml-explore/mlx-lm" target="_blank" rel="noopener">MLX LM repository</a></li>
+      <li><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw repository</a></li>
+      <li><a href="https://github.com/openclaw/skills/blob/main/skills/bendusy/mlx-local-inference/SKILL.md" target="_blank" rel="noopener">OpenClaw MLX local inference skill archive</a></li>
+      <li><a href="https://github.com/exo-explore/exo" target="_blank" rel="noopener">exo repository</a></li>
+      <li><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent repository</a></li>
+      <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server" target="_blank" rel="noopener">Hermes Agent API server documentation</a></li>
+      <li><a href="https://github.com/zachmael/marketing-claw" target="_blank" rel="noopener">Marketing Claw repository</a></li>
+      <li><a href="https://www.apple.com/macbook-pro/specs/" target="_blank" rel="noopener">Apple MacBook Pro technical specifications</a></li>
+      <li><a href="https://support.apple.com/en-us/121553" target="_blank" rel="noopener">Apple Support: 14-inch MacBook Pro with M4 Pro or M4 Max</a></li>
+      <li><a href="https://support.apple.com/en-la/125405" target="_blank" rel="noopener">Apple Support: 14-inch MacBook Pro with M5</a></li>
+      <li><a href="https://support.apple.com/en-gw/126318" target="_blank" rel="noopener">Apple Support: 14-inch MacBook Pro with M5 Pro or M5 Max</a></li>
+      <li><a href="https://www.nvidia.com/en-gb/data-center/h100/" target="_blank" rel="noopener">NVIDIA H100 Tensor Core GPU specifications</a></li>
+      <li><a href="https://www.nvidia.com/en-gb/data-center/h200/" target="_blank" rel="noopener">NVIDIA H200 Tensor Core GPU specifications</a></li>
+      <li><a href="https://www.nvidia.com/en-gb/data-center/dgx-b200/" target="_blank" rel="noopener">NVIDIA DGX B200 specifications</a></li>
+      <li><a href="https://www.nvidia.com/en-us/data-center/gb200-nvl72" target="_blank" rel="noopener">NVIDIA GB200 NVL72 specifications</a></li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div>&copy; 2026 Touchdown Labs, Inc.</div>
+  <div style="display:flex;gap:18px">
+    <a href="https://touchdown-labs.com/">Home</a>
+    <a href="https://touchdown-labs.com/#blog">Blog</a>
+    <a href="https://touchdown-labs.com/careers/">Careers</a>
+    <a href="https://touchdown-labs.com/inferguard/">InferGuard</a>
+    <a href="mailto:info@touchdown-labs.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
