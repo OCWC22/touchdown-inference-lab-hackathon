@@ -2,6 +2,10 @@
 
 Your first assignment is to make the coding agent you already use cheaper, faster, and easier to understand. Then follow the same request through engine choice, routing, prefill, KV cache, HBM, and verification.
 
+## Product principle
+
+Learners should not only study frontier AI infrastructure — they should work on real frontier problems, produce verifiable evidence, contribute to real systems, and build a path into internships, research, open-source work, and jobs. The loop: **learn → experiment → prove → contribute → get reviewed → get hired.** The redesign lives in [docs/product-redesign.md](docs/product-redesign.md); the demo of the full journey (every step labeled live / fixture-backed / proposed) is [journey.html](journey.html); the first marketplace-format challenge is [challenge/CHALLENGE.md](challenge/CHALLENGE.md); portfolio evidence conforms to [schemas/portfolio-receipt.schema.json](schemas/portfolio-receipt.schema.json).
+
 This is the isolated hackathon vertical slice. It does not modify or publish the held HBM manuscript.
 
 ## Run

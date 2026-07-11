@@ -1,0 +1,61 @@
+{
+  "receipt_version": "portfolio-receipt.v1",
+  "task": {
+    "id": "TD-A-01-RETRY-001-PREFIX",
+    "title": "Reduce repeated harness context on the frozen retry task without weakening verification",
+    "source_kind": "guided_lesson",
+    "source_reference": "challenge/CHALLENGE.md",
+    "repository": "touchdown-inference-lab-hackathon"
+  },
+  "learner_role": "sole_contributor",
+  "experience_label": "guided_laboratory",
+  "work_category": "learning_exercise",
+  "difficulty_level": 5,
+  "change_summary": "Applied stable-prefix layout and tool-output projection to the agent harness, one policy at a time, against the pinned repository revision and unchanged acceptance test.",
+  "measurements": [
+    {
+      "metric": "harness_context_characters",
+      "baseline": 40176,
+      "result": 23210,
+      "boundary": "Deterministic fixture characters on TD-A-01-RETRY-001; provider tokens not measured.",
+      "evidence_state": "fixture_backed"
+    },
+    {
+      "metric": "repeated_context_characters",
+      "baseline": 17420,
+      "result": 5180,
+      "boundary": "Same fixture boundary; repetition counted across 14 tool calls.",
+      "evidence_state": "fixture_backed"
+    },
+    {
+      "metric": "provider_cost_usd",
+      "baseline": null,
+      "result": null,
+      "boundary": "No live provider run captured; field stays null rather than estimated.",
+      "evidence_state": "unknown"
+    }
+  ],
+  "verification": {
+    "method": "Frozen acceptance test via npm test (10 assertions) plus scripts/verify.mjs artifact and secret scan.",
+    "result": "passing",
+    "reproduced_by_other_person": null,
+    "artifacts": ["challenge/tests/retry.test.mjs", "schemas/agent-optimization-receipt.schema.json"]
+  },
+  "review": {
+    "status": "not_yet_available",
+    "reviewer_kind": null,
+    "feedback": [],
+    "revisions_made": []
+  },
+  "limitations": [
+    "Character counts are a fixture proxy; provider token accounting remains unmeasured.",
+    "Single task, single revision; no evidence the policy generalizes across repositories.",
+    "No independent reproduction yet."
+  ],
+  "acceptance": "pending",
+  "skill_claims": ["prefix-cache analysis", "benchmark design", "technical writing"],
+  "safety_boundary": "Synthetic fixture workload only; no customer data, credentials, or proprietary code involved.",
+  "compensation": "educational",
+  "evidence_state": "fixture_backed",
+  "dates": { "started": "2026-07-11", "completed": "2026-07-11" }
+}

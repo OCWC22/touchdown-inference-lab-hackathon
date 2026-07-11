@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="The learner-to-contributor journey: learn, experiment, prove, contribute, get reviewed, get hired — with every step labeled live, fixture-backed, or proposed.">
+<title>Touchdown Inference Lab — Learner-to-Contributor Journey</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='12' font-weight='700' fill='white'%3ETL%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --ink: #0a0a0a; --ink-800: #222; --ink-600: #555; --ink-500: #777; --ink-400: #999;
+  --ink-200: #e5e5e5; --ink-100: #f5f5f5; --paper: #fff; --accent: #0066ff; --accent-soft: #e8f0fe;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --hairline: 1px solid var(--ink-200); --rule-heavy: 2px solid var(--ink);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; min-width: 320px; color: var(--ink); background: var(--paper); font-family: var(--font-sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: var(--ink); text-decoration-color: var(--ink-400); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+::selection { color: var(--paper); background: var(--accent); }
+.page-frame { width: min(100%, 1200px); margin-inline: auto; padding-inline: 48px; }
+.site-nav { position: fixed; z-index: 50; top: 0; right: 0; left: 0; height: 60px; border-bottom: var(--hairline); background: var(--paper); }
+.nav-inner { display: flex; height: 60px; align-items: center; justify-content: space-between; gap: 28px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; letter-spacing: -0.3px; text-decoration: none; }
+.nav-mark { display: grid; width: 30px; height: 30px; place-items: center; color: var(--paper); background: var(--ink); font-size: 0.72rem; font-weight: 800; line-height: 1; }
+.nav-links { display: flex; align-items: center; gap: 24px; color: var(--ink-500); font-size: 0.84rem; font-weight: 500; white-space: nowrap; }
+.nav-links a { color: inherit; text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+#main-content { padding-top: 92px; padding-bottom: 112px; }
+.publication-status { display: grid; grid-template-columns: minmax(150px, 260px) minmax(0, 1fr); margin: 0 0 48px; border: var(--hairline); background: var(--ink-100); }
+.publication-status strong, .publication-status span { padding: 16px 20px; }
+.publication-status strong { border-right: var(--hairline); color: var(--ink); font: 600 0.72rem/1.45 var(--font-mono); letter-spacing: 0.1em; }
+.publication-status span { color: var(--ink-600); font-size: 0.88rem; line-height: 1.6; }
+.eyebrow { color: var(--ink-400); font: 500 0.72rem/1.5 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 22px; }
+h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.08; letter-spacing: -2px; text-wrap: balance; }
+h1 strong { color: var(--ink-400); font-weight: 300; }
+.dek { max-width: 780px; margin: 24px 0 0; color: var(--ink-600); font-size: 1.08rem; line-height: 1.8; }
+h2 { margin: 84px 0 22px; font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 300; line-height: 1.15; letter-spacing: -1px; }
+h2::before { display: block; margin-bottom: 16px; color: var(--ink-400); content: attr(data-kicker); font: 500 0.74rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+p { color: var(--ink-600); font-size: 1rem; line-height: 1.8; max-width: 820px; }
+p strong { color: var(--ink); }
+code { font-family: var(--font-mono); font-size: 0.86em; padding: 0.1em 0.28em; border: var(--hairline); background: var(--ink-100); overflow-wrap: anywhere; }
+
+/* evidence marks */
+.ev { display: inline-flex; align-items: center; gap: 6px; font: 600 0.64rem/1.3 var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-600); }
+.ev::before { display: inline-grid; width: 17px; height: 17px; place-items: center; border: 1px solid var(--ink-400); color: var(--ink); background: var(--paper); content: attr(data-symbol); font-size: 0.68rem; }
+.ev[data-state="live"]::before { border-color: var(--accent); color: var(--paper); background: var(--accent); }
+.ev[data-state="fixture"]::before { background: var(--ink-100); }
+.ev[data-state="proposed"]::before { border-style: dashed; color: var(--ink-500); background: var(--ink-100); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; }
+
+/* loop strip */
+.loop-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1px; margin-top: 34px; border: var(--hairline); background: var(--ink-200); }
+.loop-cell { display: grid; gap: 6px; padding: 14px 12px; background: var(--paper); }
+.loop-cell b { font: 700 0.78rem/1.2 var(--font-mono); letter-spacing: 0.06em; }
+.loop-cell small { color: var(--ink-500); font-size: 0.72rem; line-height: 1.45; }
+.loop-cell[data-state="live"] { border-top: 3px solid var(--accent); }
+.loop-cell[data-state="fixture"] { border-top: 3px solid var(--ink-400); }
+.loop-cell[data-state="proposed"] { border-top: 3px dashed var(--ink-400); }
+
+/* story timeline */
+.story { display: grid; gap: 0; margin-top: 30px; border-left: 2px solid var(--ink-200); }
+.story-step { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px 14px; align-items: start; padding: 14px 0 14px 22px; border-bottom: var(--hairline); }
+.story-step::before { position: absolute; top: 22px; left: -7px; width: 12px; height: 12px; border: 2px solid var(--ink-400); border-radius: 50%; background: var(--paper); content: ""; }
+.story-step[data-state="live"]::before { border-color: var(--accent); background: var(--accent); }
+.story-step[data-state="fixture"]::before { border-color: var(--ink); }
+.story-step[data-state="proposed"]::before { border-style: dashed; }
+.story-num { color: var(--ink-400); font: 600 0.8rem/1.6 var(--font-mono); }
+.story-body b { display: block; color: var(--ink); font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
+.story-body span { display: block; color: var(--ink-600); font-size: 0.85rem; line-height: 1.6; max-width: 640px; }
+.story-body a { font-size: 0.85rem; }
+
+/* ladder */
+.ladder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 26px; border: var(--hairline); background: var(--ink-200); }
+.rung { display: grid; gap: 5px; padding: 14px; background: var(--paper); }
+.rung b { font: 700 0.8rem/1.3 var(--font-mono); }
+.rung small { color: var(--ink-600); font-size: 0.78rem; line-height: 1.55; }
+.rung[data-state="live"] { border-left: 3px solid var(--accent); }
+.rung[data-state="fixture"] { border-left: 3px solid var(--ink-400); }
+.rung[data-state="proposed"] { border-left: 3px dashed var(--ink-400); }
+
+/* receipt render */
+.receipt { margin-top: 26px; border: var(--rule-heavy); background: var(--paper); }
+.receipt-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 14px 18px; border-bottom: var(--hairline); background: var(--ink-100); }
+.receipt-head b { font: 700 0.8rem/1.4 var(--font-mono); letter-spacing: 0.04em; }
+.receipt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--ink-200); }
+.receipt-item { padding: 11px 14px; background: var(--paper); }
+.receipt-item small { display: block; color: var(--ink-400); font: 600 0.62rem/1.4 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+.receipt-item span { display: block; color: var(--ink); font-size: 0.85rem; line-height: 1.55; }
+.receipt-item span.mono { font-family: var(--font-mono); font-size: 0.78rem; }
+.receipt-wide { grid-column: 1 / -1; }
+.table-wrap { margin: 26px 0 0; overflow-x: auto; border: var(--hairline); }
+table { width: 100%; min-width: 560px; border-collapse: collapse; color: var(--ink-600); font-size: 0.87rem; line-height: 1.55; }
+th, td { padding: 11px 13px; border-right: var(--hairline); border-bottom: var(--hairline); vertical-align: top; text-align: left; }
+th:last-child, td:last-child { border-right: 0; }
+tr:last-child td { border-bottom: 0; }
+th { color: var(--ink); background: var(--ink-100); font: 600 0.66rem/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+td strong { color: var(--ink); }
+
+/* skill gate */
+.skill-gate { margin-top: 26px; border: var(--hairline); }
+.skill-gate-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 13px 16px; border-bottom: var(--hairline); background: var(--ink-100); }
+.skill-gate-head b { font: 700 0.85rem/1.4 var(--font-mono); }
+.skill-req { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 16px; border-bottom: var(--hairline); }
+.skill-req:last-child { border-bottom: 0; }
+.skill-req i { color: var(--ink-400); font: 600 0.72rem/1 var(--font-mono); font-style: normal; }
+.skill-req span { color: var(--ink-600); font-size: 0.85rem; }
+.callout { margin: 30px 0 0; padding: 8px 0 8px 26px; border-left: var(--rule-heavy); max-width: 820px; }
+.callout p { margin: 0; color: var(--ink); font-size: 1.12rem; font-weight: 300; line-height: 1.6; }
+.boundary { margin: 22px 0 0; padding: 12px 14px; border-left: 2px solid var(--ink); color: var(--ink-600); background: var(--ink-100); font-size: 0.85rem; line-height: 1.6; max-width: 820px; }
+.boundary strong { color: var(--ink); }
+.site-footer { border-top: var(--hairline); color: var(--ink-500); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 30px; padding-bottom: 48px; font-size: 0.82rem; }
+@media (max-width: 860px) {
+  .page-frame { padding-inline: 20px; }
+  .loop-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ladder { grid-template-columns: 1fr; }
+  .receipt-grid { grid-template-columns: 1fr; }
+  .publication-status { grid-template-columns: 1fr; }
+  .publication-status strong { border-right: 0; border-bottom: var(--hairline); }
+  .story-step { grid-template-columns: 40px minmax(0, 1fr); }
+  .story-step .ev { grid-column: 2; }
+  .brand > span:last-child { display: none; }
+  .nav-links { gap: 12px; font-size: 0.72rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site">
+  <div class="page-frame nav-inner">
+    <a class="brand" href="index.html"><span class="nav-mark">TL</span><span>Touchdown Labs</span></a>
+    <div class="nav-links">
+      <a href="index.html">Lab app</a>
+      <a href="lab.html">Continuous lab</a>
+      <a href="challenge/CHALLENGE.md">Challenge</a>
+      <a href="docs/product-redesign.md">Redesign doc</a>
+      <a href="pitch/slides.html">Slides</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" class="page-frame">
+  <div class="publication-status" role="status">
+    <strong>PRODUCT REDESIGN DEMO / PARTIALLY FIXTURE-BACKED</strong>
+    <span>Steps marked <b>live</b> run in this repository today. Steps marked <b>fixture</b> use labeled deterministic data. Steps marked <b>proposed</b> are product design, not shipped capability — nothing here inflates a classroom exercise into production experience.</span>
+  </div>
+
+  <header>
+    <p class="eyebrow">§ Product principle / Learning · research · contribution · talent</p>
+    <h1>Learn the system. <strong>Then prove you can improve it.</strong></h1>
+    <p class="dek">
+      This is not only an education platform. It is a learning, research, contribution, and
+      talent-development system. The outcome is not course completion — it is demonstrated
+      capability, real contribution, professional credibility, and access to meaningful work.
+    </p>
+    <div class="loop-strip" role="list" aria-label="The product loop">
+      <div class="loop-cell" data-state="live" role="listitem"><b>LEARN</b><small>Nine-stage lesson + thirteen-phase continuous lab</small></div>
+      <div class="loop-cell" data-state="live" role="listitem"><b>EXPERIMENT</b><small>Frozen task, one policy change at a time</small></div>
+      <div class="loop-cell" data-state="live" role="listitem"><b>PROVE</b><small>Receipts with named boundaries and nulls</small></div>
+      <div class="loop-cell" data-state="fixture" role="listitem"><b>CONTRIBUTE</b><small>Take-home loop → open-source on-ramp</small></div>
+      <div class="loop-cell" data-state="proposed" role="listitem"><b>GET REVIEWED</b><small>Maintainer / engineer review round-trip</small></div>
+      <div class="loop-cell" data-state="proposed" role="listitem"><b>GET HIRED</b><small>Evidence-based discovery, paid work</small></div>
+    </div>
+    <div class="legend" aria-label="State legend">
+      <span class="ev" data-state="live" data-symbol="L">Live in this build</span>
+      <span class="ev" data-state="fixture" data-symbol="F">Fixture-backed</span>
+      <span class="ev" data-state="proposed" data-symbol="P">Proposed design</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="story-title">
+    <h2 id="story-title" data-kicker="§ 01 / One student, fifteen steps">The learner-to-contributor journey</h2>
+    <p>
+      One story, end to end: a college student learns why a coding-agent workload repeatedly
+      misses the prefix cache — then turns that understanding into reviewed, portfolio-grade
+      work. Steps 1–9 run on the frozen task <code>TD-A-01-RETRY-001</code> in this repo today.
+    </p>
+    <div class="story">
+      <div class="story-step" data-state="live"><span class="story-num">01</span><div class="story-body"><b>Watch the request move through the system</b><span>User sentence → harness context → tokens → prefill → KV → decode → tests. <a href="lab.html">Continuous lab §01–§03</a>.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">02</span><div class="story-body"><b>Identify stable and changing prompt sections</b><span>Classify 40,176 chars by lifetime: stable, active, durable, externalized, dead.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">03</span><div class="story-body"><b>Predict why the cache misses</b><span>Moved documents reorder the prefix; byte-identical spans stop hitting.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">04</span><div class="story-body"><b>Measure repeated prefill work</b><span>17,420 repeated characters across 14 tool calls — fixture-measured, boundary named.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">05</span><div class="story-body"><b>Change the prompt layout</b><span>Apply stable-prefix layout — one policy, nothing else moves.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">06</span><div class="story-body"><b>Run the workload again</b><span>Same task, same pinned revision, same acceptance contract.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">07</span><div class="story-body"><b>Verify the same task still succeeds</b><span><code>npm test</code> — 10/10. A lower count with a failing patch scores zero.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="fixture"><span class="story-num">08</span><div class="story-body"><b>Measure lower context and repeated work</b><span>−42% context, −70% repeated context on the fixture. Latency and GPU work stay <code>null</code> until a live provider run lands — unknowns are never invented.</span></div><span class="ev" data-state="fixture" data-symbol="F">Fixture</span></div>
+      <div class="story-step" data-state="live"><span class="story-num">09</span><div class="story-body"><b>Write the technical explanation</b><span>Export the optimization receipt; document the claim boundary. <a href="docs/token-optimization.md">Token-optimization map</a>.</span></div><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="story-step" data-state="fixture"><span class="story-num">10</span><div class="story-body"><b>Apply the method to a real open-source problem</b><span>Take-home path: run the KV-cache learning loop on your own Mac, then target a real prefix-cache issue. <a href="blog/qwen36-openclaw-mlx-macbook-kv-cache.html">Guide mirrored in this repo</a>.</span></div><span class="ev" data-state="fixture" data-symbol="F">Fixture</span></div>
+      <div class="story-step" data-state="proposed"><span class="story-num">11</span><div class="story-body"><b>Submit a pull request or benchmark report</b><span>Narrow scope, tests, reproducible evidence — quality the platform prepares, merges it never promises.</span></div><span class="ev" data-state="proposed" data-symbol="P">Proposed</span></div>
+      <div class="story-step" data-state="proposed"><span class="story-num">12</span><div class="story-body"><b>Receive review from a maintainer or engineer</b><span>Correctness, experimental design, reproducibility, communication, limitations.</span></div><span class="ev" data-state="proposed" data-symbol="P">Proposed</span></div>
+      <div class="story-step" data-state="proposed"><span class="story-num">13</span><div class="story-body"><b>Revise the work</b><span>Review responses recorded in the receipt — rejected work with strong reasoning keeps value.</span></div><span class="ev" data-state="proposed" data-symbol="P">Proposed</span></div>
+      <div class="story-step" data-state="fixture"><span class="story-num">14</span><div class="story-body"><b>Add the verified result to the portfolio</b><span>Schema is live; the worked example below is labeled fixture-backed.</span></div><span class="ev" data-state="fixture" data-symbol="F">Fixture</span></div>
+      <div class="story-step" data-state="proposed"><span class="story-num">15</span><div class="story-body"><b>Become eligible for an internship or paid challenge</b><span>Evidence-based discovery — bounded, ethical, paid when appropriate. Never unpaid speculative work.</span></div><span class="ev" data-state="proposed" data-symbol="P">Proposed</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ladder-title">
+    <h2 id="ladder-title" data-kicker="§ 02 / Challenge difficulty ladder">Bounded to open-ended, L1 to L9</h2>
+    <p>
+      The frozen retry task covers L1–L5 today. The take-home loop plus a real open-source
+      issue is the designed L6 on-ramp. First marketplace entry:
+      <a href="challenge/CHALLENGE.md">challenge/CHALLENGE.md</a>, written in the full template
+      every future company-, lab-, or maintainer-sourced challenge will use.
+    </p>
+    <div class="ladder">
+      <div class="rung" data-state="live"><b>L1 · Reproduce</b><small>Reproduce a known result. <em>npm test on the pinned baseline.</em></small></div>
+      <div class="rung" data-state="live"><b>L2 · Explain</b><small>Explain why the result occurs. <em>Context-lifetime classification.</em></small></div>
+      <div class="rung" data-state="live"><b>L3 · Modify</b><small>Change one variable, measure the effect. <em>One policy per run.</em></small></div>
+      <div class="rung" data-state="live"><b>L4 · Diagnose</b><small>Find the cause of an unknown failure. <em>Reproducible bad baseline.</em></small></div>
+      <div class="rung" data-state="live"><b>L5 · Improve</b><small>Produce a verified improvement. <em>−42% / −70% with tests passing.</em></small></div>
+      <div class="rung" data-state="fixture"><b>L6 · Contribute</b><small>Useful contribution to a real project. <em>Take-home → vLLM / SGLang / LMCache on-ramp.</em></small></div>
+      <div class="rung" data-state="proposed"><b>L7 · Extend</b><small>Extend existing research or infrastructure.</small></div>
+      <div class="rung" data-state="proposed"><b>L8 · Discover</b><small>New result, failure mode, optimization, or design.</small></div>
+      <div class="rung" data-state="proposed"><b>L9 · Lead</b><small>Define the problem, coordinate a team, review evidence, deliver.</small></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="receipt-title">
+    <h2 id="receipt-title" data-kicker="§ 03 / Verified portfolio">Stronger than a résumé claim: the receipt</h2>
+    <p>
+      Every portfolio item carries a verification receipt —
+      <a href="schemas/portfolio-receipt.schema.json">schema</a> ·
+      <a href="fixtures/portfolio-receipt.example.json">this example's JSON</a>. Unknown fields
+      stay <code>null</code>. Below, the demo's own stable-prefix change rendered as a receipt.
+    </p>
+    <div class="receipt">
+      <div class="receipt-head">
+        <b>TD-A-01-RETRY-001-PREFIX · guided_laboratory · L5</b>
+        <span class="ev" data-state="fixture" data-symbol="F">Fixture-backed example</span>
+      </div>
+      <div class="receipt-grid">
+        <div class="receipt-item"><small>Task</small><span>Reduce repeated harness context without weakening verification</span></div>
+        <div class="receipt-item"><small>Learner role</small><span class="mono">sole_contributor · learning_exercise</span></div>
+        <div class="receipt-item"><small>What changed</small><span>Stable-prefix layout + tool-output projection, one policy at a time, pinned revision</span></div>
+        <div class="receipt-item"><small>Verification</small><span>Frozen acceptance test (npm test, 10 assertions) + artifact/secret verifier — passing</span></div>
+        <div class="receipt-item"><small>Measured</small><span class="mono">context 40,176 → 23,210 chars · repeated 17,420 → 5,180 · boundary: fixture characters, not provider tokens</span></div>
+        <div class="receipt-item"><small>Still unknown</small><span class="mono">provider_cost_usd: null · latency: null · reproduced_by_other_person: null</span></div>
+        <div class="receipt-item"><small>Review</small><span class="mono">status: not_yet_available · acceptance: pending</span></div>
+        <div class="receipt-item"><small>Skill claims</small><span>prefix-cache analysis · benchmark design · technical writing</span></div>
+        <div class="receipt-item receipt-wide"><small>Limitations (required field)</small><span>Character counts are a fixture proxy; single task and revision; no independent reproduction yet.</span></div>
+      </div>
+    </div>
+    <div class="boundary"><strong>Labeling rule.</strong> A classroom simulation is never labeled production experience. A tutorial is never labeled research. Participation is never labeled authorship. Experience labels are an enum in the schema: guided_laboratory, reproduced_benchmark, open_source_issue_reproduction, accepted_pull_request, company_reviewed_challenge, research_reviewed_experiment, hardware_validation, technical_report, production_like_simulation, deployed_prototype, published_research_contribution.</div>
+  </section>
+
+  <section aria-labelledby="skill-title">
+    <h2 id="skill-title" data-kicker="§ 04 / Skill graph">Skills are earned, not watched</h2>
+    <p>
+      No skill is granted for finishing a video or a quiz. Example gate — the demo's own
+      lesson maps to the first five requirements of <strong>KV-cache optimization</strong>;
+      the last three need work this build cannot yet verify.
+    </p>
+    <div class="skill-gate">
+      <div class="skill-gate-head"><b>SKILL GATE · KV-cache optimization</b><span class="ev" data-state="fixture" data-symbol="F">5 of 8 demonstrable here</span></div>
+      <div class="skill-req"><i>1</i><span>Explain KV-cache growth</span><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="skill-req"><i>2</i><span>Measure KV-cache memory</span><span class="ev" data-state="fixture" data-symbol="F">Fixture</span></div>
+      <div class="skill-req"><i>3</i><span>Identify cache waste</span><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="skill-req"><i>4</i><span>Modify a workload or policy</span><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="skill-req"><i>5</i><span>Run a controlled comparison</span><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="skill-req"><i>6</i><span>Verify output correctness under the change</span><span class="ev" data-state="live" data-symbol="L">Live</span></div>
+      <div class="skill-req"><i>7</i><span>Explain the tradeoff</span><span class="ev" data-state="fixture" data-symbol="F">Fixture</span></div>
+      <div class="skill-req"><i>8</i><span>Defend whether the change should be deployed</span><span class="ev" data-state="proposed" data-symbol="P">Needs review round-trip</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="loop-title">
+    <h2 id="loop-title" data-kicker="§ 05 / The feedback loop">Companies, labs, and maintainers close the loop</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Who</th><th>Gives</th><th>Gets</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Companies</strong></td><td>Bounded, sanitized problems; review; paid micro-projects</td><td>Proven talent pipeline, reproduced benchmarks, workload traces, lower-risk internship hiring</td></tr>
+        <tr><td><strong>Open-source maintainers</strong></td><td>Good first issues; review</td><td>Reproducible, narrowly scoped, tested contributions</td></tr>
+        <tr><td><strong>Research labs</strong></td><td>Reproduction targets; mentorship</td><td>Independent reproductions, new benchmark cases, credited assistance</td></tr>
+        <tr><td><strong>Learners</strong></td><td>Verified work</td><td>Education, credit, feedback, portfolio, paid opportunity</td></tr>
+      </tbody>
+    </table></div>
+    <div class="boundary"><strong>Safety and ethics boundary.</strong> Company challenges never expose customer data, secrets, credentials, export-controlled information, sensitive infrastructure details, unreviewed proprietary code, or personal data — sanitized workloads, synthetic data, isolated environments, approved snapshots only. Not a cheap-labor marketplace: no unpaid speculative work that replaces employees; payment ties to clear scope, evidence, and review.</div>
+    <div class="callout"><p><strong>Final principle:</strong> the product should not merely teach students about advanced AI systems. It should help them become people who can improve those systems — and hand them the evidence that proves it.</p></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="page-frame footer-inner">
+    <span>Touchdown Labs · AI-native transformation, backed by infrastructure optimization.</span>
+    <span>Redesign demo · live / fixture / proposed states labeled honestly</span>
+  </div>
+</footer>
+</body>
+</html>

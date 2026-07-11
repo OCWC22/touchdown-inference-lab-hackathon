@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://touchdown-labs.com/schemas/portfolio-receipt.schema.json",
+  "title": "Touchdown verified portfolio receipt",
+  "description": "One portfolio item with verifiable evidence. Unknown fields stay null; they are never invented. A portfolio is only stronger than a resume claim if every line is verifiable.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_version",
+    "task",
+    "learner_role",
+    "experience_label",
+    "difficulty_level",
+    "change_summary",
+    "measurements",
+    "verification",
+    "review",
+    "limitations",
+    "acceptance",
+    "evidence_state"
+  ],
+  "properties": {
+    "receipt_version": { "const": "portfolio-receipt.v1" },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "source_kind"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "source_kind": {
+          "description": "Where the problem came from.",
+          "enum": [
+            "guided_lesson",
+            "company_engineering_team",
+            "university_laboratory",
+            "open_source_maintainer",
+            "published_paper",
+            "production_incident_pattern",
+            "public_benchmark_gap",
+            "hardware_vendor",
+            "cloud_provider",
+            "nonprofit_or_government_program"
+          ]
+        },
+        "source_reference": { "type": ["string", "null"] },
+        "repository": { "type": ["string", "null"] }
+      }
+    },
+    "learner_role": {
+      "description": "The role the learner actually performed. Participation is never labeled authorship.",
+      "enum": [
+        "sole_contributor",
+        "team_contributor",
+        "workload_engineer",
+        "inference_engineer",
+        "kernel_engineer",
+        "benchmark_engineer",
+        "data_analyst",
+        "hardware_researcher",
+        "visualization_engineer",
+        "technical_writer",
+        "project_lead",
+        "reviewer"
+      ]
+    },
+    "experience_label": {
+      "description": "Exactly one honest label. A classroom simulation is never production experience; a tutorial is never research.",
+      "enum": [
+        "guided_laboratory",
+        "reproduced_benchmark",
+        "open_source_issue_reproduction",
+        "accepted_pull_request",
+        "company_reviewed_challenge",
+        "research_reviewed_experiment",
+        "hardware_validation",
+        "technical_report",
+        "production_like_simulation",
+        "deployed_prototype",
+        "published_research_contribution"
+      ]
+    },
+    "work_category": {
+      "description": "Credit category for the work actually performed.",
+      "enum": [
+        "learning_exercise",
+        "reproduction_study",
+        "engineering_contribution",
+        "research_assistance",
+        "original_research",
+        "publication_ready_work",
+        null
+      ]
+    },
+    "difficulty_level": {
+      "description": "L1 Reproduce, L2 Explain, L3 Modify, L4 Diagnose, L5 Improve, L6 Contribute, L7 Extend, L8 Discover, L9 Lead.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9
+    },
+    "change_summary": {
+      "description": "What the learner changed, in their own words, narrowly scoped.",
+      "type": "string",
+      "minLength": 1
+    },
+    "measurements": {
+      "description": "Exact values with boundaries. A measurement without a named boundary is not a measurement.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "baseline", "result", "boundary", "evidence_state"],
+        "properties": {
+          "metric": { "type": "string" },
+          "baseline": { "type": ["string", "number", "null"] },
+          "result": { "type": ["string", "number", "null"] },
+          "boundary": { "type": "string", "description": "What was measured, where, and what was not." },
+          "evidence_state": { "enum": ["measured", "live_validated", "fixture_backed", "derived", "vendor", "unknown"] }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "result"],
+      "properties": {
+        "method": { "type": "string", "description": "Named test, benchmark harness, or review procedure." },
+        "result": { "enum": ["passing", "failing", "partial", "unknown"] },
+        "reproduced_by_other_person": { "type": ["boolean", "null"] },
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["reviewed", "pending", "not_yet_available"] },
+        "reviewer_kind": {
+          "enum": [
+            "engineer", "researcher", "open_source_maintainer", "graduate_student",
+            "professor", "infrastructure_operator", "hardware_engineer",
+            "technical_founder", "alumni", null
+          ]
+        },
+        "feedback": { "type": "array", "items": { "type": "string" } },
+        "revisions_made": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "limitations": {
+      "description": "What the work does not show. Required; an empty list must be a deliberate claim.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "acceptance": {
+      "enum": ["accepted", "rejected_with_lessons", "pending", "not_applicable"]
+    },
+    "skill_claims": {
+      "description": "Skills this receipt contributes evidence toward. A skill is earned across receipts, never from one quiz.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "safety_boundary": {
+      "type": ["string", "null"],
+      "description": "What was sanitized or excluded: customer data, secrets, credentials, export-controlled information, proprietary code, personal data."
+    },
+    "compensation": {
+      "enum": ["educational", "volunteer_open_source", "paid_micro_project", "research_assistantship", "internship", "employment", null]
+    },
+    "evidence_state": {
+      "description": "Overall state of this receipt.",
+      "enum": ["measured", "live_validated", "fixture_backed", "proposed"]
+    },
+    "dates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "started": { "type": ["string", "null"] },
+        "completed": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
