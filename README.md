@@ -4,14 +4,18 @@ Your first assignment is to make the coding agent you already use cheaper, faste
 
 ## Product principle
 
-Learners should not only study frontier AI infrastructure — they should work on real frontier problems, produce verifiable evidence, contribute to real systems, and build a path into internships, research, open-source work, and jobs. The loop: **learn → experiment → prove → contribute → get reviewed → get hired.** The redesign lives in [docs/product-redesign.md](docs/product-redesign.md); the demo of the full journey (every step labeled live / fixture-backed / proposed) is [journey.html](journey.html); the first marketplace-format challenge is [challenge/CHALLENGE.md](challenge/CHALLENGE.md); portfolio evidence conforms to [schemas/portfolio-receipt.schema.json](schemas/portfolio-receipt.schema.json).
+We believe people learn fastest by working on real, bounded problems from real companies, research labs, and open-source projects — with clear feedback, real tools, honest evidence, and a path to contribution and paid work. This is not only an education surface. It's the first vertical slice of a learning, research, contribution, and talent-development system: **learn → experiment → prove → contribute → get reviewed → get hired.**
 
-This is the isolated hackathon vertical slice. It does not modify or publish the held HBM manuscript.
+- [docs/product-redesign.md](docs/product-redesign.md) — the full system design: challenge marketplace and template, contribution discipline, research tracks, honest experience labels, evidence-based skill graph, the L1–L9 difficulty ladder, hiring/paid-work ethics.
+- [journey.html](journey.html) — the learner-to-contributor journey end to end, with the incentive-alignment thesis (academia has talent, industry has funding and real problems, this system aligns them). Every step labeled `live`, `fixture-backed`, or `proposed` — nothing here inflates a guided exercise into production experience.
+- [challenge/CHALLENGE.md](challenge/CHALLENGE.md) — the frozen retry task rewritten as the first marketplace-format challenge entry.
+- [schemas/portfolio-receipt.schema.json](schemas/portfolio-receipt.schema.json) + [fixtures/portfolio-receipt.example.json](fixtures/portfolio-receipt.example.json) — the verification receipt every portfolio item carries.
+
+This repo does not modify or publish the held HBM manuscript; the datacenter/GPU schematics in `lab.html` adapt that draft's visual vocabulary only, with original captions.
 
 ## Run
 
 ```bash
-cd demos/touchdown-inference-lab
 npm test
 npm run verify
 npm run dev
@@ -21,18 +25,20 @@ Open `http://127.0.0.1:4173`.
 
 ## What works now
 
-- A nine-stage, three-minute interactive lesson.
-- A frozen retry-state coding task with a reproducible bad baseline and passing fix.
-- A context-lifetime optimization control surface.
+- A nine-stage, three-minute interactive lesson (`index.html`) built around one continuous loop: learn → observe → experiment → verify → explain → contribute → receive review → improve → build credibility → access opportunity.
+- A frozen retry-state coding task (`challenge/`) with a reproducible bad baseline and passing fix, plus `challenge/CHALLENGE.md` written in the full marketplace-challenge template.
+- A context-lifetime optimization control surface: −42% harness context, −70% repeated context on the same passing acceptance test.
 - An engine decision that changes from MLX-LM locally to vLLM on Nebius under production constraints.
 - Butterbase, EverOS, and Nebius browser adapters with server-side proxy contracts.
 - Offline Butterbase receipt queue.
 - EverOS misconception recall that changes the next lesson.
 - Nebius Token Factory or OpenAI-compatible vLLM proxy path.
 - Receipt download, schema, secret scan, and deterministic fixtures.
-- A three-slide submission deck with the demo video embedded natively: `pitch/slides.html` (team, product, video — the 1:48 complete-lifecycle walkthrough, under the 2:00 cap).
-- A hardcoded continuous lab view in the Touchdown Labs learning-engine style: `lab.html` — sticky left engine (rail, thirteen joined phases, perspective lens, per-scene receipt state, evidence marks) synchronized to a scrolling article of the same frozen task.
+- A continuous lab view in the Touchdown Labs learning-engine style: `lab.html` — sticky left engine (rail, thirteen joined phases, perspective lens, per-scene receipt state, evidence marks) synchronized to a scrolling article of the same frozen task, including datacenter GPU/HBM package and facility-power schematics.
+- The learner-to-contributor journey demo: `journey.html` — fifteen-step story, the L1–L9 challenge ladder, a rendered portfolio receipt, and a KV-cache skill gate.
 - A take-home learning path: the Touchdown Labs Mac MLX KV-cache post mirrored at `blog/qwen36-openclaw-mlx-macbook-kv-cache.html`, tied to the skill, challenge, and receipt schema in `docs/token-optimization.md`.
+- A three-slide submission deck, `pitch/slides.html` (team, product, video), plus a regenerated `.pptx` (`pitch/Touchdown-Inference-Lab-Hackathon.pptx`) built from that HTML with real editable text boxes and an embedded, playable 1:48 video — not a screenshot, not a link-out. PNG/PDF exports live in `pitch/exports/`.
+- The 1:48 lifecycle demo video (`demo-video/touchdown-inference-lab-lifecycle-demo.mp4`), under the 2:00 cap, walking all three surfaces end to end — see `demo-video/README.md`.
 
 ## Current evidence state
 
@@ -99,9 +105,12 @@ For the fast path, set `NEBIUS_API_KEY` and use Token Factory. For the infrastru
 7. Apply the EverOS misconception; show that the next instruction changes.
 8. Open the verification table and export the receipt.
 
+## Full walkthrough (1:48)
+
+`demo-video/touchdown-inference-lab-lifecycle-demo.mp4` (embedded in `pitch/slides.html` and the pptx) covers the three-minute demo above plus: the challenge ladder, the résumé-vs-receipt comparison, the incentive-alignment thesis, the thirteen-phase continuous lab down to the GPU/HBM package and facility lanes, and the learner-to-contributor journey closing on the portfolio receipt.
+
 ## Source boundaries
 
-- The attached continuous-journey plan and HBM manuscript are already mirrored in `docs/content/drafts/2026-07-10-hbm-memory-first-publication-system/`.
-- Both remain under publication hold.
+- The held HBM learning-journey manuscript lives outside this repo and remains under publication hold. `lab.html`'s datacenter GPU/HBM/facility schematics adapt only its visual vocabulary (package cross-section, tiered memory, power/thermal/cost lanes) with original captions and numbers from this repo's own fixture — no manuscript text is reproduced.
 - The lesson uses the safe causal model and evidence-state discipline, not unpublished manuscript text.
 - Existing InferGuard usage adapters remain the source for real Claude/Codex accounting.
