@@ -36,6 +36,11 @@ strong{color:var(--black)}
 .stat-note{font-size:.72rem;color:var(--gray-400);margin-top:10px;letter-spacing:.3px;text-transform:uppercase;font-weight:700}
 .quote{border-left:3px solid var(--black);padding:6px 0 6px 20px;margin:26px 0 0;max-width:880px}
 .quote p{color:var(--black);font-size:1.12rem;line-height:1.7;margin:0}
+.bio-row{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:26px;align-items:start}
+.bio-photo{margin:0;border:1px solid var(--gray-200);background:#f7f7f7;padding:8px}
+.bio-photo img{display:block;width:100%;height:300px;object-fit:cover;object-position:50% 32%}
+.bio-photo figcaption{margin-top:8px;color:var(--gray-400);font-size:.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;line-height:1.5}
+@media (max-width:900px){.bio-row{grid-template-columns:1fr}.bio-photo img{height:260px}}
 .footline{position:absolute;left:4rem;right:4rem;bottom:26px;display:flex;justify-content:space-between;
   color:var(--gray-400);font-size:.78rem;border-top:1px solid var(--gray-200);padding-top:12px}
 .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
@@ -67,11 +72,24 @@ video{display:block;width:100%;max-width:1060px;background:var(--black);border:1
     <div class="brand"><span class="brand-mark">TL</span> Touchdown Labs</div>
     <p class="eyebrow">Slide 01 / Team Introduction</p>
     <h1>Touchdown Labs. <strong>Twenty months at the kernel layer.</strong></h1>
-    <p><strong>William Chen — Founder &amp; CEO, Touchdown Labs.</strong> Twenty months studying
-      <strong>CUDA kernel generation and AMD GPU kernels</strong> — through chip-design study, AMD developer
-      hackathons, and <strong>joint IC-design research with Taiwan's NYCU</strong> — building the
-      inference-optimization company that measures <strong>cost per successful AI task</strong> from the kernel
-      up to the token bill.</p>
+    <div class="bio-row">
+      <div>
+        <p><strong>William Chen — Founder &amp; CEO, Touchdown Labs.</strong> Twenty months studying
+          <strong>CUDA kernel generation and AMD GPU kernels</strong> — through chip-design study, AMD developer
+          hackathons, and <strong>joint IC-design research with Taiwan's NYCU</strong> — building the
+          inference-optimization company that measures <strong>cost per successful AI task</strong> from the kernel
+          up to the token bill.</p>
+        <div class="quote">
+          <p><strong>Team-to-problem alignment:</strong> our day job runs from CUDA kernels to token bills.
+          This lab teaches students the same discipline — on the coding agent they already use — with the same
+          evidence standard we hold our own kernel work to.</p>
+        </div>
+      </div>
+      <figure class="bio-photo">
+        <img src="assets/william-ai-expo-taiwan.jpg" alt="William Chen at the Touchdown Labs booth, AI TAIWAN 2026 Global Pavilion, wearing an exhibitor badge and talking with a visitor.">
+        <figcaption>AI EXPO Taiwan 2026 · Global Pavilion booth · exhibitor</figcaption>
+      </figure>
+    </div>
 
     <div class="grid cols-3">
       <div class="card">
@@ -93,12 +111,6 @@ video{display:block;width:100%;max-width:1060px;background:var(--black);border:1
         <p><strong>10 / 10 local tests passing</strong>, frozen acceptance contract, and a live Butterbase
         data write (receipt row <code style="font-size:.78em">e5ff8fc6…9454</code>). Fixture and live states are always labeled.</p>
       </div>
-    </div>
-
-    <div class="quote">
-      <p><strong>Team-to-problem alignment:</strong> our day job runs from CUDA kernels to token bills.
-      This lab teaches students the same discipline — on the coding agent they already use — with the same
-      evidence standard we hold our own kernel work to.</p>
     </div>
 
     <div class="footline"><span>Touchdown Labs · AI for Education Hackathon · Stanford · July 2026</span><span>01 / 03</span></div>
